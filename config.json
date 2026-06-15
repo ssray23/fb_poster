@@ -8,17 +8,17 @@
     {
       "name": "Looking for a Room in London",
       "url": "https://www.facebook.com/groups/rentpropertyinlondon/",
-      "enabled": false
+      "enabled": true
     },
     {
       "name": "Rent a Room in London",
       "url": "https://www.facebook.com/groups/1399581520283683/",
-      "enabled": false
+      "enabled": true
     },
     {
       "name": "Flats, Spare Rooms & Houses in London",
       "url": "https://www.facebook.com/groups/848751048530350/",
-      "enabled": false
+      "enabled": true
     },
     {
       "name": "Flats without brokers in Kolkata",
@@ -48,7 +48,7 @@
     {
       "name": "London rentals - private landlords only",
       "url": "https://www.facebook.com/groups/281324592626595/",
-      "enabled": false
+      "enabled": true
     },
     {
       "name": "Indian In London",
@@ -78,19 +78,19 @@
     {
       "name": "Short Term Stay - Holiday in London",
       "url": "https://www.facebook.com/groups/1482404975307121/",
-      "enabled": false,
+      "enabled": true,
       "last_posted_at": 1781446233.465055
     },
     {
       "name": "London Short Lets",
       "url": "https://www.facebook.com/groups/7759789140/",
-      "enabled": false,
+      "enabled": true,
       "last_posted_at": 1781446624.0572412
     },
     {
       "name": "LONDON WAREHOUSE SUBLETS - Short term homes.",
       "url": "https://www.facebook.com/groups/840216079767352/",
-      "enabled": false,
+      "enabled": true,
       "last_posted_at": 1781305458.142116
     },
     {
@@ -102,7 +102,7 @@
     {
       "name": "Properties to Rent in London from Private Landlords | Houses Flats Rooms",
       "url": "https://www.facebook.com/groups/I4856/",
-      "enabled": false
+      "enabled": true
     },
     {
       "name": "London Room Share",
@@ -140,7 +140,7 @@
     {
       "name": "London - Rent Houses Flats Rooms",
       "url": "https://www.facebook.com/groups/I6976/",
-      "enabled": false
+      "enabled": true
     },
     {
       "name": "Bairesltd",
@@ -166,7 +166,7 @@
     {
       "name": "Rent Flat In London | Stylish, Modern & Affordable | Houses Flats Rooms",
       "url": "https://www.facebook.com/groups/I0148/",
-      "enabled": false
+      "enabled": true
     },
     {
       "name": "London - Rent Apartments Houses Rooms",
@@ -721,5 +721,12 @@
   "gradient_name": "random",
   "facebook_account": "Shashank Roy",
   "post_photos": true,
-  "photos_directory": "pics"
+  "photos_directory": "pics",
+  "buy_sell_info": {
+    "enabled": true,
+    "title": "Rooms/Flat available in Ealing in Summer",
+    "price": "1550",
+    "location": "Ealing",
+    "description": "A beautifully styled, sun-drenched one-bedroom flat available on rent from 15th July onwards\n\nAvailable from\u00a0mid-July to mid-Sept only.\n\n\ud83d\udccd The Location & Transport\n\t\u2022\tGunnersbury / Kew Bridge / South Ealing\u00a0area (5-min walk to Brentford Station,\u00a010-minute walk to South Ealing Underground - Piccadilly Line, Nearest Bus Stop just opposite the building).\n\t\u2022\tExcellent, fast, direct transport links to\u00a0Central London\u00a0and\u00a0Heathrow Airport.\n\t\u2022\tA short walk to the River Thames, High Street, local pubs, shops and green spaces. A Sainsbury\u2019s store is just a few metres away from the building for groceries.\n\t\u2022\t\n\ud83c\udfe1 The Space\n\t\u2022\tLiving Area:\u00a0Bright, open-plan kitchen and living space with high-speed Wi-Fi and a Smart TV\u2014perfect for working from home.\n\t\u2022\tBalcony:\u00a0Private balcony with plants, ideal for morning coffee rituals.\n\t\u2022\tBedroom:\u00a0Double bed with ample built-in wardrobe storage.\n\t\u2022\tKitchen:\u00a0Fully equipped with an espresso coffee machine, air fryer, oven, microwave, dishwasher, and a washing machine with dryer."
+  }
 }

@@ -2250,6 +2250,50 @@ def run_post(session_dir, config_path, test_mode=False):
                     )
                     break
                     
+                # Check if membership is pending or we are not a member of private group
+                is_pending = False
+                is_not_member = False
+                try:
+                    pending_text = page.locator('text="Your membership is pending"')
+                    cancel_req_btn = page.locator('button:has-text("Cancel Request"), div[role="button"]:has-text("Cancel Request")')
+                    if pending_text.count() > 0 or cancel_req_btn.count() > 0:
+                        is_pending = True
+                        
+                    join_btn = page.locator('button:has-text("Join Group"), button:has-text("Join group"), div[role="button"]:has-text("Join Group"), div[role="button"]:has-text("Join group")')
+                    is_private = page.locator('text="This group is private"').count() > 0 or page.locator('text="Private group"').count() > 0
+                    if join_btn.count() > 0 and is_private:
+                        is_not_member = True
+                except Exception:
+                    pass
+                    
+                if is_pending:
+                    logger.finish(
+                        is_skipped=True,
+                        message=f"  {STYLE_DIM}Info: Membership request is pending. Skipping.{STYLE_RESET}"
+                    )
+                    logger.log_line("")
+                    if idx < len(enabled_groups) - 1:
+                        sleep_time = random.randint(2, 5) if test_mode else random.randint(delay_range[0], delay_range[1])
+                        print(f"  Sleeping for {sleep_time}s to maintain safe posting frequency...", end="", flush=True)
+                        time.sleep(sleep_time)
+                        print(f"\r  {STYLE_DIM}Sleeping for {sleep_time}s to maintain safe posting frequency... Done{STYLE_RESET}\033[K")
+                    print("")
+                    continue
+                    
+                if is_not_member:
+                    logger.finish(
+                        is_skipped=True,
+                        message=f"  {STYLE_DIM}Info: Not a member of this private group. Skipping.{STYLE_RESET}"
+                    )
+                    logger.log_line("")
+                    if idx < len(enabled_groups) - 1:
+                        sleep_time = random.randint(2, 5) if test_mode else random.randint(delay_range[0], delay_range[1])
+                        print(f"  Sleeping for {sleep_time}s to maintain safe posting frequency...", end="", flush=True)
+                        time.sleep(sleep_time)
+                        print(f"\r  {STYLE_DIM}Sleeping for {sleep_time}s to maintain safe posting frequency... Done{STYLE_RESET}\033[K")
+                    print("")
+                    continue
+
                 # Check if it's a Buy & Sell group
                 is_sell_group = False
                 sell_button = None
@@ -2264,10 +2308,14 @@ def run_post(session_dir, config_path, test_mode=False):
                 if not is_sell_group:
                     for indicator in ["Sell Something", "What are you selling?", "Create listing", "Sell item"]:
                         try:
-                            loc = page.locator(f'span:has-text("{indicator}"), div:has-text("{indicator}"), button:has-text("{indicator}"), a:has-text("{indicator}")')
+                            loc = page.get_by_text(indicator, exact=False)
                             if loc.count() > 0:
-                                is_sell_group = True
-                                sell_button = loc.first
+                                for i in range(loc.count()):
+                                    if loc.nth(i).is_visible():
+                                        is_sell_group = True
+                                        sell_button = loc.nth(i)
+                                        break
+                            if is_sell_group:
                                 break
                         except Exception:
                             continue
@@ -2278,37 +2326,66 @@ def run_post(session_dir, config_path, test_mode=False):
                     try:
                         # Open the Buy/Sell form
                         if sell_button:
-                            sell_button.first.click(timeout=5000)
+                            sell_button.click(timeout=5000)
                         else:
                             buy_sell_tab.first.click()
                             page.wait_for_timeout(3000)
                             # Find the "Sell Something" button
                             for indicator in ["Sell Something", "What are you selling?", "Create listing", "Sell item"]:
-                                loc = page.locator(f'span:has-text("{indicator}"), div:has-text("{indicator}"), button:has-text("{indicator}"), a:has-text("{indicator}")')
+                                loc = page.get_by_text(indicator, exact=False)
                                 if loc.count() > 0:
-                                    sell_button = loc.first
+                                    for i in range(loc.count()):
+                                        if loc.nth(i).is_visible():
+                                            sell_button = loc.nth(i)
+                                            break
+                                if sell_button:
                                     break
                             if sell_button:
-                                sell_button.first.click(timeout=5000)
+                                sell_button.click(timeout=5000)
                             else:
                                 raise Exception("Sell button not found after clicking tab")
                                 
                         page.wait_for_timeout(4000)
                         
+                        # If "Choose listing type" is visible, select "Item for sale"
+                        item_for_sale = page.get_by_text("Item for sale", exact=False)
+                        if item_for_sale.count() > 0 and item_for_sale.first.is_visible():
+                            item_for_sale.first.click()
+                            page.wait_for_timeout(4000)
+                            
+                        # Click "More details" to expand if Description/Location are not already visible
+                        desc_label = page.locator('label:has-text("Description")')
+                        loc_label = page.locator('label:has-text("Location")')
+                        if desc_label.count() == 0 or loc_label.count() == 0:
+                            more_details = page.get_by_text("More details", exact=False)
+                            if more_details.count() > 0:
+                                for i in range(more_details.count()):
+                                    if more_details.nth(i).is_visible():
+                                        more_details.nth(i).scroll_into_view_if_needed()
+                                        more_details.nth(i).click()
+                                        page.wait_for_timeout(2000)
+                                        break
+                                        
                         # Find and fill Title
-                        title_input = page.locator('input[placeholder="What are you selling?"], input[aria-label="What are you selling?"], input[placeholder="Title"], input[aria-label="Title"]')
+                        title_input = page.locator('label:has-text("Title") input')
+                        if title_input.count() == 0:
+                            title_input = page.locator('input[placeholder="What are you selling?"], input[aria-label="What are you selling?"], input[placeholder="Title"], input[aria-label="Title"]')
                         if title_input.count() > 0:
                             title_input.first.fill(buy_sell_info.get("title", ""))
                             page.wait_for_timeout(1000)
                             
                         # Find and fill Price
-                        price_input = page.locator('input[placeholder="Price"], input[aria-label="Price"]')
+                        price_input = page.locator('label:has-text("Price") input')
+                        if price_input.count() == 0:
+                            price_input = page.locator('input[placeholder="Price"], input[aria-label="Price"]')
                         if price_input.count() > 0:
                             price_input.first.fill(buy_sell_info.get("price", ""))
                             page.wait_for_timeout(1000)
                             
                         # Find and fill Location
-                        location_input = page.locator('input[placeholder="Location"], input[aria-label="Location"]')
+                        location_input = page.locator('label:has-text("Location") input, label:has-text("Location") textarea')
+                        if location_input.count() == 0:
+                            location_input = page.locator('input[placeholder="Location"], input[aria-label="Location"]')
                         if location_input.count() > 0:
                             location_input.first.fill(buy_sell_info.get("location", ""))
                             page.wait_for_timeout(2500)
@@ -2318,7 +2395,9 @@ def run_post(session_dir, config_path, test_mode=False):
                             page.wait_for_timeout(1000)
                             
                         # Find and fill Description
-                        desc_input = page.locator('textarea[placeholder*="Describe"], textarea[placeholder*="Description"], textarea[aria-label*="Description"], textarea[aria-label*="Describe"], div[contenteditable="true"]')
+                        desc_input = page.locator('label:has-text("Description") textarea, label:has-text("Description") input')
+                        if desc_input.count() == 0:
+                            desc_input = page.locator('textarea[placeholder*="Describe"], textarea[placeholder*="Description"], textarea[aria-label*="Description"], textarea[aria-label*="Describe"], div[contenteditable="true"]')
                         if desc_input.count() > 0:
                             target_desc = None
                             for idx_desc in range(desc_input.count()):
@@ -2338,7 +2417,16 @@ def run_post(session_dir, config_path, test_mode=False):
                         if post_photos and image_paths:
                             file_inputs = page.locator('input[type="file"]')
                             if file_inputs.count() > 0:
-                                file_inputs.first.set_input_files(image_paths)
+                                target_input = file_inputs.first
+                                try:
+                                    is_multiple = target_input.evaluate('el => el.multiple')
+                                except Exception:
+                                    is_multiple = True  # Default fallback
+                                    
+                                if is_multiple:
+                                    target_input.set_input_files(image_paths)
+                                else:
+                                    target_input.set_input_files(image_paths[:1])
                                 page.wait_for_timeout(7000)
                                 uploaded_photos = True
                                 
