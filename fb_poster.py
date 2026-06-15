@@ -1328,9 +1328,25 @@ class GroupManagerServer(http.server.HTTPServer):
             transition: all 0.2s ease;
         }}
 
-        .modal-textarea:focus {{
-            border-color: var(--accent);
-            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+        .modal-checkbox-row {{
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            user-select: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 0.25rem;
+            padding: 0.2rem 0;
+        }}
+
+        .modal-checkbox-row input[type="checkbox"] {{
+            width: 16px;
+            height: 16px;
+            accent-color: var(--primary);
+            cursor: pointer;
+            margin: 0;
         }}
     </style>
 </head>
@@ -1424,10 +1440,9 @@ class GroupManagerServer(http.server.HTTPServer):
             </h2>
             
             <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-                <label class="checkbox-container" style="font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+                <label class="modal-checkbox-row">
                     <input type="checkbox" id="buySellEnabled" onchange="checkChanges()">
-                    <span class="checkmark" style="position: static; display: inline-block; vertical-align: middle;"></span>
-                    <span style="user-select: none;">Enable Buy/Sell form for Buy & Sell groups</span>
+                    <span>Enable Buy/Sell form for Buy & Sell groups</span>
                 </label>
                 
                 <div class="form-group" style="display: flex; flex-direction: column; gap: 0.25rem;">
