@@ -1,0 +1,25 @@
+# Environments
+venv/
+.venv/
+env/
+venv*/
+
+# Session data (highly sensitive - contains Facebook login sessions/cookies)
+fb_session/
+fb_session*/
+
+# Process locks
+fb_poster.lock
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/

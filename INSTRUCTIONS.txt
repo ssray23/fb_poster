@@ -1,0 +1,94 @@
+================================================================================
+                           FACEBOOK GROUP POSTER INSTRUCTIONS
+================================================================================
+
+This application automates posting to Facebook Groups using Playwright. 
+All configuration, including enabled groups and post text, is managed in:
+  ./config.json
+  (Note: You can set "gradient_name" inside config.json to "random" to choose a
+  random gradient dynamically per post, or specify a list of names to pick from.)
+
+- **Photo Uploading Support:** Place listing image files inside `./pics/` and ensure
+  "post_photos": true is set in config.json (or toggled via the interactive manager dashboard)
+  to automatically attach them. This overrides any gradient background style options.
+- **Concurrency Prevention:** The script uses a PID lock file (`fb_poster.lock`) to prevent
+  conflicting runs in parallel (e.g., trying to --manage groups while posting is active).
+
+Follow these steps to operate the app from your terminal:
+
+--------------------------------------------------------------------------------
+1. ACTIVATE VIRTUAL ENVIRONMENT
+--------------------------------------------------------------------------------
+Always activate the Python virtual environment first:
+  
+  source venv/bin/activate
+
+--------------------------------------------------------------------------------
+2. INITIAL SESSION SETUP (RUN ONCE OR WHEN COOKIES EXPIRE)
+--------------------------------------------------------------------------------
+Launch a headed browser to log in to Facebook manually and save the session:
+
+  python fb_poster.py --setup
+
+- Log in to your Facebook account in the browser window that opens.
+- Solve any 2FA or security check.
+- Once you see your main news feed, return to the terminal and press ENTER.
+- This stores authentication cookies in `./fb_session/`.
+
+--------------------------------------------------------------------------------
+3. SCRAPE JOINED GROUPS
+--------------------------------------------------------------------------------
+Retrieve all Facebook Groups you belong to and update config.json:
+
+  python fb_poster.py --fetch-groups
+
+- Runs headlessly, auto-scrolls through your groups list, and saves them.
+- New groups are disabled by default.
+- This will automatically launch the Interactive Groups Manager next.
+
+--------------------------------------------------------------------------------
+4. MANAGE GROUPS & EDIT POST TEXT
+--------------------------------------------------------------------------------
+Launch the local web dashboard to toggle groups and edit the message (this automatically fetches/syncs your joined groups list first):
+
+  python fb_poster.py --manage
+
+- This fetches your joined groups list from Facebook, updates config.json, starts a local server, and opens http://localhost:8080/ in your browser.
+- Type/edit your message in the text field (a live character counter will warn you if you exceed formatting limits).
+- Toggle checkboxes to enable/disable target groups, or filter by search.
+- Click "Save Changes" to write updates directly to config.json.
+- To exit, click "Close Manager", close the browser tab, or press Ctrl+C in your terminal.
+- The terminal will report whether changes were saved or not.
+
+--------------------------------------------------------------------------------
+5. DRY-RUN / TEST POSTING (RECOMMENDED)
+--------------------------------------------------------------------------------
+Verify that target elements are found without publishing anything:
+
+  python fb_poster.py --test
+
+- Runs headlessly, checks for Buy & Sell groups (skips them), types the message,
+  applies gradient styling if enabled, and discards the draft.
+
+--------------------------------------------------------------------------------
+6. RUN POSTING (LIVE)
+--------------------------------------------------------------------------------
+Post the configured message to all enabled groups:
+
+  python fb_poster.py --post
+
+- Runs headlessly and automates posting with random delays to mimic human typing.
+
+--------------------------------------------------------------------------------
+AUTOMATION / SCHEDULING (macOS CRON)
+--------------------------------------------------------------------------------
+To run the poster automatically, edit your crontab:
+  
+  crontab -e
+
+Add this entry (e.g., to run every 3 days at 9:00 AM):
+
+  0 9 */3 * * "/Users/suddharay/Library/Mobile Documents/com~apple~CloudDocs/Mac Projects/FB Poster/venv/bin/python" "/Users/suddharay/Library/Mobile Documents/com~apple~CloudDocs/Mac Projects/FB Poster/fb_poster.py" --post >> "/Users/suddharay/Library/Mobile Documents/com~apple~CloudDocs/Mac Projects/FB Poster/fb_poster.log" 2>&1
+
+*Note: Since the path contains spaces, double-quotes are mandatory.*
+================================================================================
