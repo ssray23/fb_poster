@@ -515,6 +515,7 @@ class GroupManagerHTTPHandler(http.server.BaseHTTPRequestHandler):
                 config = load_config(self.server.config_path)
                 config["post_text"] = post_text
                 config["post_photos"] = post_photos
+                config["buy_sell_info"] = payload.get("buy_sell_info", {})
                 for group in config.get("groups", []):
                     group["enabled"] = group.get("url") in enabled_urls
                     
@@ -561,6 +562,14 @@ class GroupManagerServer(http.server.HTTPServer):
         config = load_config(self.config_path)
         post_photos = config.get("post_photos", False)
         photos_dir_name = config.get("photos_directory", "pics")
+        buy_sell_info = config.get("buy_sell_info", {
+            "enabled": False,
+            "title": "",
+            "price": "",
+            "location": "",
+            "description": ""
+        })
+        js_buy_sell_info = json.dumps(buy_sell_info)
         
         photo_count = 0
         base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -1264,6 +1273,65 @@ class GroupManagerServer(http.server.HTTPServer):
                 padding-top: 0.5rem;
             }}
         }}
+        /* Modal dialog styles */
+        .buy-sell-modal {{
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            max-width: 500px;
+            width: 90%;
+            background: var(--panel-bg);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: 0;
+            outline: none;
+            overflow: hidden;
+        }}
+
+        .buy-sell-modal::backdrop {{
+            background-color: rgba(15, 23, 42, 0.3);
+            backdrop-filter: blur(4px);
+        }}
+
+        .modal-input {{
+            width: 100%;
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            color: var(--text-color);
+            padding: 0.45rem 0.6rem;
+            border-radius: 6px;
+            outline: none;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }}
+
+        .modal-input:focus {{
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+        }}
+
+        .modal-textarea {{
+            width: 100%;
+            height: 90px;
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            color: var(--text-color);
+            padding: 0.45rem 0.6rem;
+            border-radius: 6px;
+            outline: none;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            resize: none;
+            transition: all 0.2s ease;
+        }}
+
+        .modal-textarea:focus {{
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+        }}
     </style>
 </head>
 <body>
@@ -1291,7 +1359,14 @@ class GroupManagerServer(http.server.HTTPServer):
 
         <div class="textarea-section">
             <div style="display: flex; justify-content: space-between; align-items: center;">
-                <label class="textarea-label" for="postEditor">Post Content</label>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <label class="textarea-label" for="postEditor">Post Content</label>
+                    <button class="btn btn-secondary" style="font-size: 0.7rem; padding: 0.15rem 0.4rem; display: inline-flex; align-items: center; gap: 0.2rem; border-radius: 4px;" id="buySellConfigBtn" onclick="openBuySellModal()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                        <span>Buy/Sell Listing Details</span>
+                        <span id="buySellStatusDot" style="width: 6px; height: 6px; background-color: var(--primary); border-radius: 50%; display: none;"></span>
+                    </button>
+                </div>
                 <div class="char-counter" id="charCounter" style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted);">
                     Characters: <span id="charCount" style="color: var(--accent);">0</span>
                 </div>
@@ -1341,12 +1416,58 @@ class GroupManagerServer(http.server.HTTPServer):
 
     <div class="toast" id="toast">Changes saved successfully!</div>
 
+    <dialog id="buySellModal" class="buy-sell-modal" closedby="any" aria-labelledby="buySellModalTitle">
+        <div class="modal-content">
+            <h2 id="buySellModalTitle" style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text-color); display: flex; align-items: center; gap: 0.4rem;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                Buy & Sell Listing Details
+            </h2>
+            
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                <label class="checkbox-container" style="font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+                    <input type="checkbox" id="buySellEnabled" onchange="checkChanges()">
+                    <span class="checkmark" style="position: static; display: inline-block; vertical-align: middle;"></span>
+                    <span style="user-select: none;">Enable Buy/Sell form for Buy & Sell groups</span>
+                </label>
+                
+                <div class="form-group" style="display: flex; flex-direction: column; gap: 0.25rem;">
+                    <label for="buySellTitle" style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted);">What are you selling? (Title)</label>
+                    <input type="text" id="buySellTitle" class="modal-input" placeholder="e.g. Rooms/Flat available in Ealing" oninput="checkChanges()">
+                </div>
+                
+                <div style="display: flex; gap: 0.5rem;">
+                    <div class="form-group" style="display: flex; flex-direction: column; gap: 0.25rem; flex: 1;">
+                        <label for="buySellPrice" style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted);">Price (£)</label>
+                        <input type="text" id="buySellPrice" class="modal-input" placeholder="e.g. 700" oninput="checkChanges()">
+                    </div>
+                    <div class="form-group" style="display: flex; flex-direction: column; gap: 0.25rem; flex: 2;">
+                        <label for="buySellLocation" style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted);">Location</label>
+                        <input type="text" id="buySellLocation" class="modal-input" placeholder="e.g. Ealing, London" oninput="checkChanges()">
+                    </div>
+                </div>
+                
+                <div class="form-group" style="display: flex; flex-direction: column; gap: 0.25rem;">
+                    <label for="buySellDesc" style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted);">Description</label>
+                    <textarea id="buySellDesc" class="modal-textarea" placeholder="Describe the item you are selling..." oninput="checkChanges()"></textarea>
+                </div>
+            </div>
+            
+            <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--card-border);">
+                <button class="btn btn-secondary" onclick="closeBuySellModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="applyBuySellDetails()">Apply Details</button>
+            </div>
+        </div>
+    </dialog>
+
     <script>
         let rawPostText = {js_post_text};
         let initialPostText = "";
         let initialPostPhotos = false;
         let initialCheckboxStates = [];
         let initialEditorHTML = "";
+        let rawBuySellInfo = {js_buy_sell_info};
+        let currentBuySellInfo = {{ ...rawBuySellInfo }};
+        let initialBuySellInfo = {{ ...rawBuySellInfo }};
 
         function toSansSerifBoldJS(str) {{
             let result = '';
@@ -1607,8 +1728,74 @@ class GroupManagerServer(http.server.HTTPServer):
                 }}, 0);
             }});
 
+            // Populate Buy/Sell fields
+            document.getElementById('buySellEnabled').checked = currentBuySellInfo.enabled || false;
+            document.getElementById('buySellTitle').value = currentBuySellInfo.title || "";
+            document.getElementById('buySellPrice').value = currentBuySellInfo.price || "";
+            document.getElementById('buySellLocation').value = currentBuySellInfo.location || "";
+            document.getElementById('buySellDesc').value = currentBuySellInfo.description || "";
+            
+            // Configure fallback light-dismiss for the dialog
+            const modal = document.getElementById('buySellModal');
+            if (modal && !('closedBy' in HTMLDialogElement.prototype)) {{
+                modal.addEventListener('click', (event) => {{
+                    if (event.target !== modal) return;
+                    const rect = modal.getBoundingClientRect();
+                    const isDialogContent = (
+                        rect.top <= event.clientY &&
+                        event.clientY <= rect.top + rect.height &&
+                        rect.left <= event.clientX &&
+                        event.clientX <= rect.left + rect.width
+                    );
+                    if (isDialogContent) return;
+                    modal.close();
+                }});
+            }}
+            
+            updateBuySellStatusDot();
             updateCounters();
             updateCharCounter();
+            checkChanges();
+        }}
+
+        function updateBuySellStatusDot() {{
+            const dot = document.getElementById('buySellStatusDot');
+            if (dot) {{
+                dot.style.display = currentBuySellInfo.enabled ? 'inline-block' : 'none';
+            }}
+        }}
+
+        function openBuySellModal() {{
+            // Load current state into form fields
+            document.getElementById('buySellEnabled').checked = currentBuySellInfo.enabled || false;
+            document.getElementById('buySellTitle').value = currentBuySellInfo.title || "";
+            document.getElementById('buySellPrice').value = currentBuySellInfo.price || "";
+            document.getElementById('buySellLocation').value = currentBuySellInfo.location || "";
+            document.getElementById('buySellDesc').value = currentBuySellInfo.description || "";
+            
+            const modal = document.getElementById('buySellModal');
+            if (modal) {{
+                modal.showModal();
+            }}
+        }}
+
+        function closeBuySellModal() {{
+            const modal = document.getElementById('buySellModal');
+            if (modal) {{
+                modal.close();
+            }}
+        }}
+
+        function applyBuySellDetails() {{
+            // Read values from form
+            currentBuySellInfo.enabled = document.getElementById('buySellEnabled').checked;
+            currentBuySellInfo.title = document.getElementById('buySellTitle').value.trim();
+            currentBuySellInfo.price = document.getElementById('buySellPrice').value.trim();
+            currentBuySellInfo.location = document.getElementById('buySellLocation').value.trim();
+            currentBuySellInfo.description = document.getElementById('buySellDesc').value.trim();
+            
+            updateBuySellStatusDot();
+            closeBuySellModal();
             checkChanges();
         }}
 
@@ -1653,7 +1840,13 @@ class GroupManagerServer(http.server.HTTPServer):
             const currentPostPhotos = document.getElementById('postPhotosCheckbox').checked;
             const checkboxes = document.querySelectorAll('.group-checkbox');
             
-            let hasChanges = currentPostText !== initialPostText || currentPostPhotos !== initialPostPhotos || editor.innerHTML !== initialEditorHTML;
+            let buySellChanged = (currentBuySellInfo.enabled !== initialBuySellInfo.enabled) ||
+                                 (currentBuySellInfo.title !== initialBuySellInfo.title) ||
+                                 (currentBuySellInfo.price !== initialBuySellInfo.price) ||
+                                 (currentBuySellInfo.location !== initialBuySellInfo.location) ||
+                                 (currentBuySellInfo.description !== initialBuySellInfo.description);
+            
+            let hasChanges = currentPostText !== initialPostText || currentPostPhotos !== initialPostPhotos || editor.innerHTML !== initialEditorHTML || buySellChanged;
             
             if (!hasChanges) {{
                 for (let i = 0; i < checkboxes.length; i++) {{
@@ -1764,7 +1957,8 @@ class GroupManagerServer(http.server.HTTPServer):
                 body: JSON.stringify({{ 
                     enabled_urls: enabledUrls,
                     post_text: postText,
-                    post_photos: postPhotos
+                    post_photos: postPhotos,
+                    buy_sell_info: currentBuySellInfo
                 }})
             }})
             .then(res => {{
@@ -1776,12 +1970,11 @@ class GroupManagerServer(http.server.HTTPServer):
                     }}, 2500);
                     
                     // Update baselines in-place without re-rendering the editor.
-                    // Re-rendering via initOriginalState() would lose bold/italic/underline
-                    // on chars like £ that have no Unicode math equivalent.
                     rawPostText = postText;
                     initialPostText = postText;
                     initialEditorHTML = editor.innerHTML;
                     initialPostPhotos = document.getElementById('postPhotosCheckbox').checked;
+                    initialBuySellInfo = {{ ...currentBuySellInfo }};
                     const cbs = document.querySelectorAll('.group-checkbox');
                     initialCheckboxStates = Array.from(cbs).map(cb => ({{
                         url: cb.getAttribute('data-url'),
@@ -1949,6 +2142,8 @@ def run_post(session_dir, config_path, test_mode=False):
         sys.exit(1)
         
     config = load_config(config_path)
+    buy_sell_info = config.get("buy_sell_info", {})
+    buy_sell_enabled = buy_sell_info.get("enabled", False)
     post_text = config.get("post_text", "").strip()
     if not post_text:
         print("Error: 'post_text' is empty or missing in config.json.")
@@ -2040,6 +2235,138 @@ def run_post(session_dir, config_path, test_mode=False):
                     )
                     break
                     
+                # Check if it's a Buy & Sell group
+                is_sell_group = False
+                sell_button = None
+                buy_sell_tab = page.locator('a[role="tab"]:has-text("Buy and sell"), a[role="tab"]:has-text("Buy & sell"), a[role="tab"]:has-text("Buy and Sell")')
+                
+                try:
+                    if buy_sell_tab.count() > 0:
+                        is_sell_group = True
+                except Exception:
+                    pass
+                    
+                if not is_sell_group:
+                    for indicator in ["Sell Something", "What are you selling?", "Create listing", "Sell item"]:
+                        try:
+                            loc = page.locator(f'span:has-text("{indicator}"), div:has-text("{indicator}"), button:has-text("{indicator}"), a:has-text("{indicator}")')
+                            if loc.count() > 0:
+                                is_sell_group = True
+                                sell_button = loc.first
+                                break
+                        except Exception:
+                            continue
+                            
+                # If we want to use the Buy/Sell form and it's a Buy/Sell group
+                if is_sell_group and buy_sell_enabled:
+                    logger.log_substep_start("Filling Buy/Sell form")
+                    try:
+                        # Open the Buy/Sell form
+                        if sell_button:
+                            sell_button.first.click(timeout=5000)
+                        else:
+                            buy_sell_tab.first.click()
+                            page.wait_for_timeout(3000)
+                            # Find the "Sell Something" button
+                            for indicator in ["Sell Something", "What are you selling?", "Create listing", "Sell item"]:
+                                loc = page.locator(f'span:has-text("{indicator}"), div:has-text("{indicator}"), button:has-text("{indicator}"), a:has-text("{indicator}")')
+                                if loc.count() > 0:
+                                    sell_button = loc.first
+                                    break
+                            if sell_button:
+                                sell_button.first.click(timeout=5000)
+                            else:
+                                raise Exception("Sell button not found after clicking tab")
+                                
+                        page.wait_for_timeout(4000)
+                        
+                        # Find and fill Title
+                        title_input = page.locator('input[placeholder="What are you selling?"], input[aria-label="What are you selling?"], input[placeholder="Title"], input[aria-label="Title"]')
+                        if title_input.count() > 0:
+                            title_input.first.fill(buy_sell_info.get("title", ""))
+                            page.wait_for_timeout(1000)
+                            
+                        # Find and fill Price
+                        price_input = page.locator('input[placeholder="Price"], input[aria-label="Price"]')
+                        if price_input.count() > 0:
+                            price_input.first.fill(buy_sell_info.get("price", ""))
+                            page.wait_for_timeout(1000)
+                            
+                        # Find and fill Location
+                        location_input = page.locator('input[placeholder="Location"], input[aria-label="Location"]')
+                        if location_input.count() > 0:
+                            location_input.first.fill(buy_sell_info.get("location", ""))
+                            page.wait_for_timeout(2500)
+                            page.keyboard.press("ArrowDown")
+                            page.wait_for_timeout(1000)
+                            page.keyboard.press("Enter")
+                            page.wait_for_timeout(1000)
+                            
+                        # Find and fill Description
+                        desc_input = page.locator('textarea[placeholder*="Describe"], textarea[placeholder*="Description"], textarea[aria-label*="Description"], textarea[aria-label*="Describe"], div[contenteditable="true"]')
+                        if desc_input.count() > 0:
+                            target_desc = None
+                            for idx_desc in range(desc_input.count()):
+                                item = desc_input.nth(idx_desc)
+                                if title_input.count() > 0 and item.element_handle() == title_input.first.element_handle():
+                                    continue
+                                target_desc = item
+                                break
+                            if target_desc:
+                                target_desc.focus()
+                                target_desc.click()
+                                target_desc.fill(buy_sell_info.get("description", ""))
+                                page.wait_for_timeout(1000)
+                                
+                        # Handle photo upload if enabled and photos are available
+                        uploaded_photos = False
+                        if post_photos and image_paths:
+                            file_inputs = page.locator('input[type="file"]')
+                            if file_inputs.count() > 0:
+                                file_inputs.first.set_input_files(image_paths)
+                                page.wait_for_timeout(7000)
+                                uploaded_photos = True
+                                
+                        # Submit form
+                        next_btn = page.locator('button:has-text("Next"), div[role="button"]:has-text("Next")')
+                        post_btn = page.locator('button:has-text("Post"), div[role="button"]:has-text("Post"), button:has-text("Publish"), div[role="button"]:has-text("Publish")')
+                        
+                        if test_mode:
+                            logger.log_substep_done("Filling Buy/Sell form", "Test Mode (Not Posting)")
+                            page.keyboard.press("Escape")
+                            page.wait_for_timeout(1000)
+                            page.keyboard.press("Escape")
+                            logger.finish(success=True)
+                        else:
+                            if next_btn.count() > 0:
+                                next_btn.first.click()
+                                page.wait_for_timeout(3000)
+                                post_btn = page.locator('button:has-text("Post"), div[role="button"]:has-text("Post"), button:has-text("Publish"), div[role="button"]:has-text("Publish")')
+                                
+                            if post_btn.count() > 0:
+                                post_btn.first.click()
+                                page.wait_for_timeout(8000) # Wait for post to submit
+                                # Update last posted timestamp and save config
+                                group["last_posted_at"] = time.time()
+                                save_config(config_path, config)
+                                logger.log_substep_done("Filling Buy/Sell form", "Posted successfully")
+                                logger.finish(success=True)
+                            else:
+                                raise Exception("Post/Publish button not found")
+                            
+                    except Exception as e:
+                        logger.log_substep_done("Filling Buy/Sell form", f"Failed: {e}")
+                        logger.finish(success=False)
+                        
+                    # Handle sleep before continuing to next group
+                    if idx < len(enabled_groups) - 1:
+                        sleep_time = random.randint(2, 5) if test_mode else random.randint(delay_range[0], delay_range[1])
+                        print(f"  Sleeping for {sleep_time}s to maintain safe posting frequency...", end="", flush=True)
+                        time.sleep(sleep_time)
+                        print(f"\r  {STYLE_DIM}Sleeping for {sleep_time}s to maintain safe posting frequency... Done{STYLE_RESET}\033[K")
+                    print("")
+                    continue
+
                 # Try to switch to "Discussion" tab to ensure composer is visible
                 discussion_tab = page.locator('a[role="tab"]:has-text("Discussion")')
                 if discussion_tab.count() > 0:
