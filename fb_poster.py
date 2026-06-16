@@ -2395,22 +2395,61 @@ def run_post(session_dir, config_path, test_mode=False):
                             page.wait_for_timeout(1000)
                             
                         # Find and fill Description
-                        desc_input = page.locator('label:has-text("Description") textarea, label:has-text("Description") input')
+                        desc_input = page.locator('label:has-text("Description") textarea, label:has-text("Description") input, label:has-text("Description") div[contenteditable="true"]')
                         if desc_input.count() == 0:
-                            desc_input = page.locator('textarea[placeholder*="Describe"], textarea[placeholder*="Description"], textarea[aria-label*="Description"], textarea[aria-label*="Describe"], div[contenteditable="true"]')
+                            desc_input = page.locator(
+                                'textarea[placeholder*="Describe" i], textarea[placeholder*="Description" i], '
+                                'textarea[aria-label*="Description" i], textarea[aria-label*="Describe" i], '
+                                'div[contenteditable="true"][aria-label*="Description" i], div[contenteditable="true"][aria-label*="Describe" i], '
+                                'div[contenteditable="true"][placeholder*="Description" i], div[contenteditable="true"][placeholder*="Describe" i], '
+                                'div[contenteditable="true"][aria-placeholder*="Description" i], div[contenteditable="true"][aria-placeholder*="Describe" i]'
+                            )
+                        
+                        target_desc = None
                         if desc_input.count() > 0:
-                            target_desc = None
                             for idx_desc in range(desc_input.count()):
                                 item = desc_input.nth(idx_desc)
                                 if title_input.count() > 0 and item.element_handle() == title_input.first.element_handle():
                                     continue
                                 target_desc = item
                                 break
-                            if target_desc:
-                                target_desc.focus()
-                                target_desc.click()
-                                target_desc.fill(buy_sell_info.get("description", ""))
-                                page.wait_for_timeout(1000)
+                                
+                        # Ultimate fallback: find generic textareas or divs, but explicitly ignore comment fields
+                        if not target_desc:
+                            candidates = page.locator('textarea, div[contenteditable="true"]')
+                            candidate_count = candidates.count()
+                            for idx_c in range(candidate_count):
+                                cand = candidates.nth(idx_c)
+                                try:
+                                    aria_label = cand.get_attribute("aria-label") or ""
+                                    placeholder = cand.get_attribute("placeholder") or ""
+                                    aria_placeholder = cand.get_attribute("aria-placeholder") or ""
+                                    
+                                    # Skip comment boxes, replies, and already used inputs
+                                    is_comment = any(
+                                        "comment" in text.lower() or "reply" in text.lower() or "write a public" in text.lower()
+                                        for text in [aria_label, placeholder, aria_placeholder]
+                                    )
+                                    
+                                    is_already_used = False
+                                    if title_input.count() > 0 and cand.element_handle() == title_input.first.element_handle():
+                                        is_already_used = True
+                                    if price_input.count() > 0 and cand.element_handle() == price_input.first.element_handle():
+                                        is_already_used = True
+                                    if location_input.count() > 0 and cand.element_handle() == location_input.first.element_handle():
+                                        is_already_used = True
+                                        
+                                    if not is_comment and not is_already_used:
+                                        target_desc = cand
+                                        break
+                                except Exception:
+                                    pass
+
+                        if target_desc:
+                            target_desc.focus()
+                            target_desc.click()
+                            target_desc.fill(buy_sell_info.get("description", ""))
+                            page.wait_for_timeout(1000)
                                 
                         # Handle photo upload if enabled and photos are available
                         uploaded_photos = False
@@ -2579,24 +2618,43 @@ def run_post(session_dir, config_path, test_mode=False):
                     else:
                         logger.log_line("  Info: Dialog modal not found for photo upload.")
                 
+                target_textbox = None
                 if dialog.count() > 0:
-                    textbox = dialog.locator('div[contenteditable="true"]')
-                    if textbox.count() == 0:
-                        textbox = dialog.get_by_role("textbox")
+                    tb_candidates = dialog.locator('div[contenteditable="true"]')
+                    if tb_candidates.count() == 0:
+                        tb_candidates = dialog.get_by_role("textbox")
                 else:
-                    textbox = page.locator('div[contenteditable="true"]')
-                    if textbox.count() == 0:
-                        textbox = page.get_by_role("textbox")
+                    tb_candidates = page.locator('div[contenteditable="true"]')
+                    if tb_candidates.count() == 0:
+                        tb_candidates = page.get_by_role("textbox")
+                        
+                if tb_candidates.count() > 0:
+                    for idx_tb in range(tb_candidates.count()):
+                        cand = tb_candidates.nth(idx_tb)
+                        try:
+                            aria_label = cand.get_attribute("aria-label") or ""
+                            placeholder = cand.get_attribute("placeholder") or ""
+                            aria_placeholder = cand.get_attribute("aria-placeholder") or ""
+                            
+                            is_comment = any(
+                                "comment" in text.lower() or "reply" in text.lower() or "write a public" in text.lower()
+                                for text in [aria_label, placeholder, aria_placeholder]
+                            )
+                            if not is_comment:
+                                target_textbox = cand
+                                break
+                        except Exception:
+                            pass
                     
-                if textbox.count() == 0:
+                if not target_textbox:
                     logger.log_line(f"  {CROSS_RED} Could not locate the input text box. Skipping.")
                     page.keyboard.press("Escape")
                     logger.finish(success=False)
                     continue
                     
                 logger.log_substep_start("Typing message")
-                textbox.first.focus()
-                textbox.first.click()
+                target_textbox.focus()
+                target_textbox.click()
                 
                 # Human typing behavior with native rich text formatting
                 parser = FacebookFormatParser()
