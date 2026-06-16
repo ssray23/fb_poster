@@ -1,4 +1,5 @@
 {
+  "groq_api_key": "",
   "post_text": "\ud83d\udecf\ufe0f <b>Rooms/Flat</b> <b>available</b> <b>in</b> <b>Ealing</b> <b>this</b> <b>summer</b>\u00a0\n\ud83d\udcb7 <b>\u00a3700/</b>month or <b>\u00a3950/</b>month (Entire place \u00a3<b>1600</b>/month)\u00a0\n\ud83d\udcc5 <b>Mid</b>-<b>July</b> to <b>end</b> <b>of</b> <b>August</b>\u00a0\n\ud83e\ude91 <b>Furnished</b> & ready to move in\u00a0\n\ud83d\udcf2 WhatsApp / call / text: <b>07832</b> <b>899231</b>",
   "delay_between_posts_range": [
     300,
@@ -33,17 +34,17 @@
     {
       "name": "Indians in London(uk)\ud83c\uddee\ud83c\uddf3\ud83c\uddec\ud83c\udde7",
       "url": "https://www.facebook.com/groups/957142435761631/",
-      "enabled": false
+      "enabled": true
     },
     {
       "name": "Indians in London - UK",
       "url": "https://www.facebook.com/groups/1357760678471751/",
-      "enabled": false
+      "enabled": true
     },
     {
       "name": "\ud83c\uddec\ud83c\udde7 Indians In UK \u2013 Community Group \ud83c\uddee\ud83c\uddf3",
       "url": "https://www.facebook.com/groups/1556082448463591/",
-      "enabled": false
+      "enabled": true
     },
     {
       "name": "Propertieskolkata",
@@ -98,7 +99,7 @@
     {
       "name": "Indians in UK",
       "url": "https://www.facebook.com/groups/1177914439457477/",
-      "enabled": false
+      "enabled": true
     },
     {
       "name": "Ukindian",
@@ -134,12 +135,13 @@
       "name": "London Student Accommodation 2025-2026",
       "url": "https://www.facebook.com/groups/1223636181513739/",
       "enabled": true,
-      "last_posted_at": 1781640045.4224582
+      "last_posted_at": 1781647442.974134
     },
     {
       "name": "Wimbledon, London - Rent Apartment House Flat Studio Room Roommate",
       "url": "https://www.facebook.com/groups/I9360/",
-      "enabled": true
+      "enabled": true,
+      "last_posted_at": 1781648349.77642
     },
     {
       "name": "Wembley, London - Rent Apartment House Flat Studio Room Roommate",
@@ -150,7 +152,7 @@
       "name": "London Accommodation for UK Students",
       "url": "https://www.facebook.com/groups/724354792718258/",
       "enabled": true,
-      "last_posted_at": 1781642370.1837041
+      "last_posted_at": 1781648474.000499
     },
     {
       "name": "Apartments for rent - London | Rent Apartments Houses Rooms",
@@ -851,6 +853,6 @@
     "title": "Rooms/Flat available in Ealing this Summer",
     "price": "1600",
     "location": "Ealing",
-    "description": "A beautifully styled, sun-drenched one-bedroom flat available on rent from 15th July onwards.\n\nAvailable from\u00a0mid-July to mid-Sept only.\n\n\ud83d\udccd The Location & Transport\n\t\u2022\tGunnersbury / Kew Bridge / South Ealing\u00a0area (5-min walk to Brentford Station,\u00a010-minute walk to South Ealing Underground - Piccadilly Line, Nearest Bus Stop just opposite the building).\n\t\u2022\tExcellent, fast, direct transport links to\u00a0Central London\u00a0and\u00a0Heathrow Airport.\n\t\u2022\tA short walk to the River Thames, High Street, local pubs, shops and green spaces. A Sainsbury\u2019s store is just a few metres away from the building for groceries.\n\t\u2022\t\n\ud83c\udfe1 The Space\n\t\u2022\tLiving Area:\u00a0Bright, open-plan kitchen and living space with high-speed Wi-Fi and a Smart TV\u2014perfect for working from home.\n\t\u2022\tBalcony:\u00a0Private balcony with plants, ideal for morning coffee rituals.\n\t\u2022\tBedroom:\u00a0Double bed with ample built-in wardrobe storage.\n\t\u2022\tKitchen:\u00a0Fully equipped with an espresso coffee machine, air fryer, oven, microwave, dishwasher, and a washing machine with dryer."
+    "description": "Beautiful one-bedroom flat available on rent.\nAvailable from\u00a0mid-July to mid-Sept only.\n\n\ud83d\udccd The Location & Transport\n\t\u2022\tGunnersbury / Kew Bridge / South Ealing\u00a0area (5-min walk to Brentford Station,\u00a010-minute walk to South Ealing Underground - Piccadilly Line, Nearest Bus Stop just opposite the building).\n\t\u2022\tExcellent, fast, direct transport links to\u00a0Central London\u00a0and\u00a0Heathrow Airport.\n\t\u2022\tA short walk to the River Thames, High Street, local pubs, shops and green spaces. A Sainsbury\u2019s store is just a few metres away from the building for groceries.\n\t\u2022\t\n\ud83c\udfe1 The Space\n\t\u2022\tLiving Area:\u00a0Bright, open-plan kitchen and living space with high-speed Wi-Fi and a Smart TV\u2014perfect for working from home.\n\t\u2022\tBalcony:\u00a0Private balcony with plants, ideal for morning coffee rituals.\n\t\u2022\tBedroom:\u00a0Double bed with ample built-in wardrobe storage.\n\t\u2022\tKitchen:\u00a0Fully equipped with an espresso coffee machine, air fryer, oven, microwave, dishwasher, and a washing machine with dryer."
   }
 }

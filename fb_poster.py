@@ -1,5 +1,11 @@
 import os
 import sys
+from dotenv import load_dotenv
+load_dotenv()
+import warnings
+warnings.filterwarnings("ignore", category=FutureWarning, module=r"google\.auth")
+warnings.filterwarnings("ignore", category=FutureWarning, module=r"google\.oauth2")
+warnings.filterwarnings("ignore", message=r".*urllib3.*OpenSSL.*")
 import re
 import json
 import time
@@ -9,6 +15,7 @@ import http.server
 import webbrowser
 from playwright.sync_api import sync_playwright
 from html.parser import HTMLParser
+from ai_form_filler import fill_buy_sell_form_with_ai
 
 class FacebookFormatParser(HTMLParser):
     def __init__(self):
@@ -2159,6 +2166,7 @@ def run_post(session_dir, config_path, test_mode=False):
     config = load_config(config_path)
     buy_sell_info = config.get("buy_sell_info", {})
     buy_sell_enabled = buy_sell_info.get("enabled", False)
+    groq_api_key = config.get("groq_api_key", "") or os.environ.get("GROQ_API_KEY", "")
     post_text = config.get("post_text", "").strip()
     if not post_text:
         print("Error: 'post_text' is empty or missing in config.json.")
@@ -2418,145 +2426,176 @@ def run_post(session_dir, config_path, test_mode=False):
                                 
                         page.wait_for_timeout(4000)
                         
-                        # If "Choose listing type" is visible, select "Item for sale"
-                        item_for_sale = page.get_by_text("Item for sale", exact=False)
-                        if item_for_sale.count() > 0 and item_for_sale.first.is_visible():
-                            item_for_sale.first.click()
-                            page.wait_for_timeout(4000)
-                            
-                        # Click "More details" to expand if Description/Location are not already visible
-                        desc_label = page.locator('label:has-text("Description")')
-                        loc_label = page.locator('label:has-text("Location")')
-                        if desc_label.count() == 0 or loc_label.count() == 0:
-                            more_details = page.get_by_text("More details", exact=False)
-                            if more_details.count() > 0:
-                                for i in range(more_details.count()):
-                                    if more_details.nth(i).is_visible():
-                                        more_details.nth(i).scroll_into_view_if_needed()
-                                        more_details.nth(i).click()
-                                        page.wait_for_timeout(2000)
-                                        break
-                                        
-                        # Find and fill Title
-                        title_input = page.locator('label:has-text("Title") input')
-                        if title_input.count() == 0:
-                            title_input = page.locator('input[placeholder="What are you selling?"], input[aria-label="What are you selling?"], input[placeholder="Title"], input[aria-label="Title"]')
-                        if title_input.count() > 0:
-                            title_input.first.fill(buy_sell_info.get("title", ""))
-                            page.wait_for_timeout(1000)
-                            
-                        # Find and fill Price
-                        price_input = page.locator('label:has-text("Price") input')
-                        if price_input.count() == 0:
-                            price_input = page.locator('input[placeholder="Price"], input[aria-label="Price"]')
-                        if price_input.count() > 0:
-                            price_input.first.fill(buy_sell_info.get("price", ""))
-                            page.wait_for_timeout(1000)
-                            
-                        # Find and select Condition (required in some groups/designs)
-                        cond_trigger = page.locator('label:has-text("Condition"), div[aria-label="Condition"]')
-                        if cond_trigger.count() == 0:
-                            cond_trigger = page.get_by_text("Condition", exact=True)
-                            
-                        if cond_trigger.count() > 0 and cond_trigger.first.is_visible():
-                            try:
-                                cond_trigger.first.click()
-                                page.wait_for_timeout(1500)
-                                page.locator('div[role="option"]:has-text("New"), div[role="option"]:has-text("Used – like new")').first.click()
-                                page.wait_for_timeout(1000)
-                            except Exception:
-                                pass
-                            
-                        # Find and fill Location
-                        location_input = page.locator('label:has-text("Location") input, label:has-text("Location") textarea')
-                        if location_input.count() == 0:
-                            location_input = page.locator('input[placeholder="Location"], input[aria-label="Location"]')
-                        if location_input.count() > 0:
-                            location_input.first.fill(buy_sell_info.get("location", ""))
-                            page.wait_for_timeout(2500)
-                            page.keyboard.press("ArrowDown")
-                            page.wait_for_timeout(1000)
-                            page.keyboard.press("Enter")
-                            page.wait_for_timeout(1000)
-                            
-                        # Find and fill Description
-                        desc_input = page.locator('label:has-text("Description") textarea, label:has-text("Description") input, label:has-text("Description") div[contenteditable="true"]')
-                        if desc_input.count() == 0:
-                            desc_input = page.locator(
-                                'textarea[placeholder*="Describe" i], textarea[placeholder*="Description" i], '
-                                'textarea[aria-label*="Description" i], textarea[aria-label*="Describe" i], '
-                                'div[contenteditable="true"][aria-label*="Description" i], div[contenteditable="true"][aria-label*="Describe" i], '
-                                'div[contenteditable="true"][placeholder*="Description" i], div[contenteditable="true"][placeholder*="Describe" i], '
-                                'div[contenteditable="true"][aria-placeholder*="Description" i], div[contenteditable="true"][aria-placeholder*="Describe" i]'
-                            )
+                        # --- AI-powered form filling ---
+                        uploaded_photos = False
+                        ai_used = False
                         
-                        target_desc = None
-                        if desc_input.count() > 0:
-                            for idx_desc in range(desc_input.count()):
-                                item = desc_input.nth(idx_desc)
-                                if title_input.count() > 0 and item.element_handle() == title_input.first.element_handle():
-                                    continue
-                                target_desc = item
-                                break
+                        if groq_api_key:
+                            ai_result = fill_buy_sell_form_with_ai(
+                                page=page,
+                                buy_sell_info=buy_sell_info,
+                                image_paths=image_paths if post_photos else [],
+                                api_key=groq_api_key,
+                                logger=logger
+                            )
+                            if ai_result["success"]:
+                                ai_used = True
+                                uploaded_photos = ai_result["uploaded_photos"]
+                            else:
+                                logger.log_line(f"  AI form filling failed: {ai_result['error']}. Falling back to legacy logic.")
+                        
+                        # --- Legacy fallback (used when no API key or AI fails) ---
+                        if not ai_used:
+                            # If "Choose listing type" is visible, select "Item for sale"
+                            item_for_sale = page.get_by_text("Item for sale", exact=False)
+                            if item_for_sale.count() > 0 and item_for_sale.first.is_visible():
+                                item_for_sale.first.click()
+                                page.wait_for_timeout(4000)
                                 
-                        # Ultimate fallback: find generic textareas or divs, but explicitly ignore comment fields
-                        if not target_desc:
-                            candidates = page.locator('textarea, div[contenteditable="true"]')
-                            candidate_count = candidates.count()
-                            for idx_c in range(candidate_count):
-                                cand = candidates.nth(idx_c)
+                            # Click "More details" to expand if Description/Location are not already visible
+                            desc_label = page.locator('label:has-text("Description")')
+                            loc_label = page.locator('label:has-text("Location")')
+                            if desc_label.count() == 0 or loc_label.count() == 0:
+                                more_details = page.get_by_text("More details", exact=False)
+                                if more_details.count() > 0:
+                                    for i in range(more_details.count()):
+                                        if more_details.nth(i).is_visible():
+                                            more_details.nth(i).scroll_into_view_if_needed()
+                                            more_details.nth(i).click()
+                                            page.wait_for_timeout(2000)
+                                            break
+                                            
+                            # Find and fill Title
+                            title_input = page.locator('label:has-text("Title") input')
+                            if title_input.count() == 0:
+                                title_input = page.locator('input[placeholder="What are you selling?"], input[aria-label="What are you selling?"], input[placeholder="Title"], input[aria-label="Title"]')
+                            if title_input.count() > 0:
+                                title_input.first.fill(buy_sell_info.get("title", ""))
+                                page.wait_for_timeout(1000)
+                                
+                            # Find and fill Price
+                            price_input = page.locator('label:has-text("Price") input')
+                            if price_input.count() == 0:
+                                price_input = page.locator('input[placeholder="Price"], input[aria-label="Price"]')
+                            if price_input.count() > 0:
+                                price_input.first.fill(buy_sell_info.get("price", ""))
+                                page.wait_for_timeout(1000)
+                                
+                            # Find and select Condition (required in some groups/designs)
+                            cond_trigger = page.locator('label:has-text("Condition"), div[aria-label="Condition"]')
+                            if cond_trigger.count() == 0:
+                                cond_trigger = page.get_by_text("Condition", exact=True)
+                                
+                            if cond_trigger.count() > 0 and cond_trigger.first.is_visible():
                                 try:
-                                    aria_label = cand.get_attribute("aria-label") or ""
-                                    placeholder = cand.get_attribute("placeholder") or ""
-                                    aria_placeholder = cand.get_attribute("aria-placeholder") or ""
-                                    
-                                    # Skip comment boxes, replies, and already used inputs
-                                    is_comment = any(
-                                        "comment" in text.lower() or "reply" in text.lower() or "write a public" in text.lower()
-                                        for text in [aria_label, placeholder, aria_placeholder]
-                                    )
-                                    
-                                    is_already_used = False
-                                    if title_input.count() > 0 and cand.element_handle() == title_input.first.element_handle():
-                                        is_already_used = True
-                                    if price_input.count() > 0 and cand.element_handle() == price_input.first.element_handle():
-                                        is_already_used = True
-                                    if location_input.count() > 0 and cand.element_handle() == location_input.first.element_handle():
-                                        is_already_used = True
-                                        
-                                    if not is_comment and not is_already_used:
-                                        target_desc = cand
-                                        break
+                                    cond_trigger.first.click()
+                                    page.wait_for_timeout(1500)
+                                    page.locator('div[role="option"]:has-text("New"), div[role="option"]:has-text("Used – like new")').first.click()
+                                    page.wait_for_timeout(1000)
                                 except Exception:
                                     pass
-
-                        if target_desc:
-                            target_desc.focus()
-                            target_desc.click()
-                            target_desc.fill(buy_sell_info.get("description", ""))
-                            page.wait_for_timeout(1000)
                                 
-                        # Handle photo upload if enabled and photos are available
-                        uploaded_photos = False
-                        if post_photos and image_paths:
-                            file_inputs = page.locator('input[type="file"]')
-                            if file_inputs.count() > 0:
-                                target_input = file_inputs.first
-                                try:
-                                    is_multiple = target_input.evaluate('el => el.multiple')
-                                except Exception:
-                                    is_multiple = True  # Default fallback
+                            # Find and fill Location
+                            location_input = page.locator('label:has-text("Location") input, label:has-text("Location") textarea')
+                            if location_input.count() == 0:
+                                location_input = page.locator('input[placeholder="Location"], input[aria-label="Location"]')
+                            if location_input.count() > 0:
+                                location_input.first.fill(buy_sell_info.get("location", ""))
+                                page.wait_for_timeout(2500)
+                                page.keyboard.press("ArrowDown")
+                                page.wait_for_timeout(1000)
+                                page.keyboard.press("Enter")
+                                page.wait_for_timeout(1000)
+                                
+                            # Find and fill Description
+                            desc_input = page.locator('label:has-text("Description") textarea, label:has-text("Description") input, label:has-text("Description") div[contenteditable="true"]')
+                            if desc_input.count() == 0:
+                                desc_input = page.locator(
+                                    'textarea[placeholder*="Describe" i], textarea[placeholder*="Description" i], '
+                                    'textarea[aria-label*="Description" i], textarea[aria-label*="Describe" i], '
+                                    'div[contenteditable="true"][aria-label*="Description" i], div[contenteditable="true"][aria-label*="Describe" i], '
+                                    'div[contenteditable="true"][placeholder*="Description" i], div[contenteditable="true"][placeholder*="Describe" i], '
+                                    'div[contenteditable="true"][aria-placeholder*="Description" i], div[contenteditable="true"][aria-placeholder*="Describe" i]'
+                                )
+                            
+                            target_desc = None
+                            if desc_input.count() > 0:
+                                for idx_desc in range(desc_input.count()):
+                                    item = desc_input.nth(idx_desc)
+                                    if title_input.count() > 0 and item.element_handle() == title_input.first.element_handle():
+                                        continue
+                                    target_desc = item
+                                    break
                                     
-                                if is_multiple:
-                                    target_input.set_input_files(image_paths)
-                                else:
-                                    target_input.set_input_files(image_paths[:1])
-                                page.wait_for_timeout(7000)
-                                uploaded_photos = True
+                            # Ultimate fallback: find generic textareas or divs, but explicitly ignore comment fields
+                            if not target_desc:
+                                candidates = page.locator('textarea, div[contenteditable="true"]')
+                                candidate_count = candidates.count()
+                                for idx_c in range(candidate_count):
+                                    cand = candidates.nth(idx_c)
+                                    try:
+                                        aria_label = cand.get_attribute("aria-label") or ""
+                                        placeholder = cand.get_attribute("placeholder") or ""
+                                        aria_placeholder = cand.get_attribute("aria-placeholder") or ""
+                                        
+                                        # Skip comment boxes, replies, and already used inputs
+                                        is_comment = any(
+                                            "comment" in text.lower() or "reply" in text.lower() or "write a public" in text.lower()
+                                            for text in [aria_label, placeholder, aria_placeholder]
+                                        )
+                                        
+                                        is_already_used = False
+                                        if title_input.count() > 0 and cand.element_handle() == title_input.first.element_handle():
+                                            is_already_used = True
+                                        if price_input.count() > 0 and cand.element_handle() == price_input.first.element_handle():
+                                            is_already_used = True
+                                        if location_input.count() > 0 and cand.element_handle() == location_input.first.element_handle():
+                                            is_already_used = True
+                                            
+                                        if not is_comment and not is_already_used:
+                                            target_desc = cand
+                                            break
+                                    except Exception:
+                                        pass
+
+                            if target_desc:
+                                target_desc.focus()
+                                target_desc.click()
+                                target_desc.fill(buy_sell_info.get("description", ""))
+                                page.wait_for_timeout(1000)
+                                    
+                            # Handle photo upload if enabled and photos are available
+                            if post_photos and image_paths:
+                                file_inputs = page.locator('input[type="file"]')
+                                if file_inputs.count() > 0:
+                                    target_input = None
+                                    for i in range(file_inputs.count()):
+                                        item = file_inputs.nth(i)
+                                        try:
+                                            accept = item.get_attribute("accept") or ""
+                                            is_multiple = item.evaluate("el => el.multiple")
+                                            if "image" in accept and is_multiple:
+                                                target_input = item
+                                                break
+                                        except Exception:
+                                            pass
+                                    if not target_input:
+                                        target_input = file_inputs.first
+                                        
+                                    try:
+                                        is_multiple = target_input.evaluate('el => el.multiple')
+                                    except Exception:
+                                        is_multiple = True  # Default fallback
+                                        
+                                    if is_multiple:
+                                        target_input.set_input_files(image_paths)
+                                    else:
+                                        target_input.set_input_files(image_paths[:1])
+                                    page.wait_for_timeout(7000)
+                                    uploaded_photos = True
                                 
                         # Submit form
                         next_btn = page.locator('button:has-text("Next"), div[role="button"]:has-text("Next")')
-                        post_btn = page.locator('button:has-text("Post"), div[role="button"]:has-text("Post"), button:has-text("Publish"), div[role="button"]:has-text("Publish")')
                         
                         if test_mode:
                             logger.log_substep_done("Filling Buy/Sell form", "Test Mode (Not Posting)")
@@ -2565,13 +2604,43 @@ def run_post(session_dir, config_path, test_mode=False):
                             page.keyboard.press("Escape")
                             logger.finish(success=True)
                         else:
+                            # Click Next if it exists and is visible
+                            has_next = False
                             if next_btn.count() > 0:
-                                next_btn.first.click()
-                                page.wait_for_timeout(3000)
-                                post_btn = page.locator('button:has-text("Post"), div[role="button"]:has-text("Post"), button:has-text("Publish"), div[role="button"]:has-text("Publish")')
+                                for i in range(next_btn.count()):
+                                    if next_btn.nth(i).is_visible():
+                                        next_btn.nth(i).click()
+                                        has_next = True
+                                        break
+                                page.wait_for_timeout(2000)
                                 
-                            if post_btn.count() > 0:
-                                post_btn.first.click()
+                            # Poll for the Post/Publish/Submit button (up to 10 seconds)
+                            start_time = time.time()
+                            post_btn_element = None
+                            while time.time() - start_time < 10.0:
+                                for btn_label in ["Post", "Publish", "Submit"]:
+                                    try:
+                                        # First search inside dialog if present
+                                        dialog = page.locator('div[role="dialog"]')
+                                        if dialog.count() > 0:
+                                            item = dialog.get_by_role("button", name=btn_label, exact=True)
+                                            if item.count() > 0 and item.first.is_visible() and item.first.is_enabled():
+                                                post_btn_element = item.first
+                                                break
+                                        
+                                        # Fallback to page-wide search
+                                        item = page.get_by_role("button", name=btn_label, exact=True)
+                                        if item.count() > 0 and item.first.is_visible() and item.first.is_enabled():
+                                            post_btn_element = item.first
+                                            break
+                                    except Exception:
+                                        pass
+                                if post_btn_element:
+                                    break
+                                page.wait_for_timeout(500)
+                                
+                            if post_btn_element:
+                                post_btn_element.click()
                                 page.wait_for_timeout(8000) # Wait for post to submit
                                 # Update last posted timestamp and save config
                                 group["last_posted_at"] = time.time()
@@ -2580,7 +2649,7 @@ def run_post(session_dir, config_path, test_mode=False):
                                 logger.log_substep_done("Filling Buy/Sell form", "Posted successfully")
                                 logger.finish(success=True)
                             else:
-                                raise Exception("Post/Publish button not found")
+                                raise Exception("Post/Publish button not found or not enabled")
                             
                     except Exception as e:
                         logger.log_substep_done("Filling Buy/Sell form", f"Failed: {e}")
@@ -2740,11 +2809,25 @@ def run_post(session_dir, config_path, test_mode=False):
                 uploaded_photos = False
                 if post_photos and image_paths:
                     if dialog.count() > 0:
-                        file_input = dialog.locator('input[type="file"]')
-                        if file_input.count() > 0:
+                        file_inputs = dialog.locator('input[type="file"]')
+                        if file_inputs.count() > 0:
                             try:
                                 logger.log_substep_start(f"Uploading {len(image_paths)} photos")
-                                file_input.first.set_input_files(image_paths)
+                                target_input = None
+                                for i in range(file_inputs.count()):
+                                    item = file_inputs.nth(i)
+                                    try:
+                                        accept = item.get_attribute("accept") or ""
+                                        is_multiple = item.evaluate("el => el.multiple")
+                                        if "image" in accept and is_multiple:
+                                            target_input = item
+                                            break
+                                    except Exception:
+                                        pass
+                                if not target_input:
+                                    target_input = file_inputs.first
+                                    
+                                target_input.set_input_files(image_paths)
                                 page.wait_for_timeout(7000) # Wait for photos to upload/process
                                 logger.log_substep_done(f"Uploading {len(image_paths)} photos", "Done")
                                 uploaded_photos = True
@@ -2963,7 +3046,7 @@ def run_post(session_dir, config_path, test_mode=False):
                 
                 print(msg, end="", flush=True)
                 time.sleep(sleep_time)
-                print(f"\r  {STYLE_DIM}{msg} Done{STYLE_RESET}\033[K")
+                print(f"\r{STYLE_DIM}{msg} Done{STYLE_RESET}\033[K")
             print("")
                 
         context.close()
