@@ -2294,6 +2294,38 @@ def run_post(session_dir, config_path, test_mode=False):
                     print("")
                     continue
 
+                # Check for posting restrictions (suspension, admin lock, etc.)
+                restriction = None
+                try:
+                    suspended_loc = page.get_by_text("suspended in this group", exact=False)
+                    turned_off_loc = page.get_by_text("turned off your ability to post", exact=False)
+                    disabled_posting_loc = page.get_by_text("admin has temporarily turned off posting", exact=False)
+                    disabled_posting_loc2 = page.get_by_text("posting has been disabled", exact=False)
+                    cant_post_loc = page.get_by_text("you can't post to this group", exact=False)
+                    
+                    if (suspended_loc.count() > 0 and suspended_loc.first.is_visible()) or (turned_off_loc.count() > 0 and turned_off_loc.first.is_visible()):
+                        restriction = "Profile is suspended in this group"
+                    elif (disabled_posting_loc.count() > 0 and disabled_posting_loc.first.is_visible()) or (disabled_posting_loc2.count() > 0 and disabled_posting_loc2.first.is_visible()):
+                        restriction = "Posting is disabled in this group by admin"
+                    elif cant_post_loc.count() > 0 and cant_post_loc.first.is_visible():
+                        restriction = "You cannot post to this group"
+                except Exception:
+                    pass
+                    
+                if restriction:
+                    logger.finish(
+                        is_skipped=True,
+                        message=f"  {STYLE_DIM}Info: {restriction}. Skipping.{STYLE_RESET}"
+                    )
+                    logger.log_line("")
+                    if idx < len(enabled_groups) - 1:
+                        sleep_time = random.randint(2, 5) if test_mode else random.randint(delay_range[0], delay_range[1])
+                        print(f"  Sleeping for {sleep_time}s to maintain safe posting frequency...", end="", flush=True)
+                        time.sleep(sleep_time)
+                        print(f"\r  {STYLE_DIM}Sleeping for {sleep_time}s to maintain safe posting frequency... Done{STYLE_RESET}\033[K")
+                    print("")
+                    continue
+
                 # Check if it's a Buy & Sell group
                 is_sell_group = False
                 sell_button = None
@@ -2329,21 +2361,59 @@ def run_post(session_dir, config_path, test_mode=False):
                             sell_button.click(timeout=5000)
                         else:
                             buy_sell_tab.first.click()
-                            page.wait_for_timeout(3000)
-                            # Find the "Sell Something" button
-                            for indicator in ["Sell Something", "What are you selling?", "Create listing", "Sell item"]:
-                                loc = page.get_by_text(indicator, exact=False)
-                                if loc.count() > 0:
-                                    for i in range(loc.count()):
-                                        if loc.nth(i).is_visible():
-                                            sell_button = loc.nth(i)
-                                            break
+                            # Polling loop to wait for sell button to become visible on the tab page (up to 8s)
+                            start_time = time.time()
+                            while time.time() - start_time < 8.0:
+                                for indicator in ["Sell Something", "What are you selling?", "Create listing", "Sell item", "Create Listing", "Sell", "List something", "List an item"]:
+                                    try:
+                                        loc = page.get_by_text(indicator, exact=False)
+                                        count = loc.count()
+                                        for i in range(count):
+                                            item = loc.nth(i)
+                                            if item.is_visible():
+                                                sell_button = item
+                                                break
+                                    except Exception:
+                                        pass
+                                    if sell_button:
+                                        break
                                 if sell_button:
                                     break
+                                page.wait_for_timeout(500)
+                                
                             if sell_button:
                                 sell_button.click(timeout=5000)
                             else:
-                                raise Exception("Sell button not found after clicking tab")
+                                # Check for restriction notices on the page
+                                reason = "Sell button not found after clicking tab"
+                                is_restricted = False
+                                try:
+                                    page_text = page.locator('body').inner_text()
+                                    if "suspended" in page_text.lower() or "turned off your ability to post" in page_text.lower():
+                                        reason = "Profile suspended in this group"
+                                        is_restricted = True
+                                    elif "pending admin approval" in page_text.lower():
+                                        reason = "Posting restricted (post already pending admin approval)"
+                                        is_restricted = True
+                                except Exception:
+                                    pass
+                                    
+                                if is_restricted:
+                                    logger.log_substep_done("Filling Buy/Sell form", f"Skipped: {reason}")
+                                    logger.finish(
+                                        is_skipped=True,
+                                        message=f"  {STYLE_DIM}Info: {reason}. Skipping.{STYLE_RESET}"
+                                    )
+                                    # Handle sleep before continuing to next group
+                                    if idx < len(enabled_groups) - 1:
+                                        sleep_time = random.randint(2, 5) if test_mode else random.randint(delay_range[0], delay_range[1])
+                                        print(f"  Sleeping for {sleep_time}s to maintain safe posting frequency...", end="", flush=True)
+                                        time.sleep(sleep_time)
+                                        print(f"\r  {STYLE_DIM}Sleeping for {sleep_time}s to maintain safe posting frequency... Done{STYLE_RESET}\033[K")
+                                    print("")
+                                    continue
+                                else:
+                                    raise Exception(reason)
                                 
                         page.wait_for_timeout(4000)
                         
@@ -2520,43 +2590,68 @@ def run_post(session_dir, config_path, test_mode=False):
                     except Exception:
                         logger.log_substep_done("Switching to Discussion tab", "Failed")
                         
-                # Click composer button
+                # Click composer button (with robust polling up to 8s)
                 logger.log_substep_start("Opening composer")
                 composer_clicked = False
                 composer_label = ""
-                for label in ["Write something...", "Create a public post...", "Create a post...", "Write a post..."]:
-                    try:
-                        loc = page.get_by_text(label, exact=False)
-                        if loc.count() > 0:
-                            loc.first.scroll_into_view_if_needed()
-                            loc.first.click(timeout=3000)
-                            composer_clicked = True
-                            composer_label = f"Done ({label})"
+                
+                start_time = time.time()
+                while time.time() - start_time < 8.0:
+                    for label in ["Write something", "Create a public post", "Create a post", "Write a post", "What's on your mind", "Write something to this group", "Create listing", "Sell something"]:
+                        try:
+                            loc = page.get_by_text(label, exact=False)
+                            count = loc.count()
+                            for i in range(count):
+                                item = loc.nth(i)
+                                if item.is_visible():
+                                    item.scroll_into_view_if_needed()
+                                    item.click(timeout=2000)
+                                    composer_clicked = True
+                                    composer_label = f"Done ({label})"
+                                    break
+                        except Exception:
+                            continue
+                        if composer_clicked:
                             break
-                    except Exception:
-                        continue
+                            
+                    if composer_clicked:
+                        break
                         
-                if not composer_clicked:
-                    # Alternative selector
+                    # Alternative selector: role button
                     try:
-                        loc = page.get_by_role("button", name=re.compile(r"Write something|Create.*post", re.IGNORECASE))
-                        if loc.count() > 0:
-                            loc.first.click(timeout=3000)
-                            composer_clicked = True
-                            composer_label = "Done (role button)"
+                        loc = page.get_by_role("button", name=re.compile(r"Write something|Create.*post|What's on your mind", re.IGNORECASE))
+                        count = loc.count()
+                        for i in range(count):
+                            item = loc.nth(i)
+                            if item.is_visible():
+                                item.click(timeout=2000)
+                                composer_clicked = True
+                                composer_label = "Done (role button)"
+                                break
                     except Exception:
                         pass
                         
-                if not composer_clicked:
-                    # Final fallback selectors
+                    if composer_clicked:
+                        break
+                        
+                    # Fallback locator: span
                     try:
-                        loc = page.locator('span:has-text("Write something...")')
-                        if loc.count() > 0:
-                            loc.first.click(timeout=3000)
-                            composer_clicked = True
-                            composer_label = "Done (fallback span)"
+                        loc = page.locator('span:has-text("Write something")')
+                        count = loc.count()
+                        for i in range(count):
+                            item = loc.nth(i)
+                            if item.is_visible():
+                                item.click(timeout=2000)
+                                composer_clicked = True
+                                composer_label = "Done (fallback span)"
+                                break
                     except Exception:
                         pass
+                        
+                    if composer_clicked:
+                        break
+                        
+                    page.wait_for_timeout(500)
                         
                 if not composer_clicked:
                     # Check if it's a Buy & Sell group requiring a listing form
@@ -2588,8 +2683,28 @@ def run_post(session_dir, config_path, test_mode=False):
                             message=f"  {STYLE_DIM}Info: Buy & Sell group requires listing form. Skipped.{STYLE_RESET}"
                         )
                     else:
-                        logger.log_substep_done("Opening composer", "Failed (not found)")
-                        logger.finish(success=False, message=None)
+                        # Check for restriction notices on the page
+                        reason = "Composer not found (posting restricted)"
+                        try:
+                            pending_loc = page.get_by_text("pending admin approval", exact=False)
+                            if pending_loc.count() > 0 and pending_loc.first.is_visible():
+                                reason = "Composer hidden (post already pending admin approval)"
+                            else:
+                                page_text = page.locator('body').inner_text()
+                                if "suspended" in page_text.lower() or "turned off your ability to post" in page_text.lower():
+                                    reason = "Profile suspended in this group"
+                                elif "admin has temporarily turned off posting" in page_text.lower() or "posting has been disabled" in page_text.lower():
+                                    reason = "Posting disabled by admin in this group"
+                                elif "you can't post to this group" in page_text.lower():
+                                    reason = "You cannot post to this group"
+                        except Exception:
+                            pass
+                        
+                        logger.log_substep_done("Opening composer", f"Skipped: {reason}")
+                        logger.finish(
+                            is_skipped=True,
+                            message=f"  {STYLE_DIM}Info: {reason}. Skipping.{STYLE_RESET}"
+                        )
                     continue
                 else:
                     logger.log_substep_done("Opening composer", composer_label)
