@@ -516,11 +516,40 @@ def fill_buy_sell_form_with_ai(page, buy_sell_info, image_paths, api_key, logger
             logger.log_line(f"  {msg}")
     
     try:
-        # Step 1: Extract DOM snapshot
+        # Step 1: Extract initial DOM snapshot
         _log("AI: Scanning form fields...")
         snapshot = extract_form_snapshot(page)
         field_count = len(snapshot.get("fields", []))
         _log(f"AI: Found {field_count} form fields")
+        
+        # Step 1.5: If form isn't open yet, click listing type and re-scan
+        if field_count < 3 and snapshot.get("listing_types"):
+            _log("AI: Form not fully visible. Selecting listing type first...")
+            target_type = None
+            for lt in snapshot["listing_types"]:
+                if "item" in lt.lower() or "sale" in lt.lower():
+                    target_type = lt
+                    break
+            if not target_type:
+                target_type = snapshot["listing_types"][0]
+                
+            try:
+                loc = page.get_by_text(target_type, exact=True)
+                if loc.count() > 0:
+                    for i in range(loc.count()):
+                        if loc.nth(i).is_visible():
+                            loc.nth(i).scroll_into_view_if_needed()
+                            loc.nth(i).click()
+                            _log(f"AI: Clicked listing type '{target_type}'")
+                            page.wait_for_timeout(3000)
+                            
+                            # Re-take snapshot now that form is open
+                            snapshot = extract_form_snapshot(page)
+                            field_count = len(snapshot.get("fields", []))
+                            _log(f"AI: Re-scanned and found {field_count} form fields")
+                            break
+            except Exception as e:
+                _log(f"AI: Failed to click listing type: {e}")
         
         if field_count == 0:
             return {"success": False, "uploaded_photos": False, "error": "No form fields found on page"}

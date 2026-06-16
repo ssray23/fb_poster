@@ -2280,7 +2280,6 @@ def run_post(session_dir, config_path, test_mode=False):
                         is_skipped=True,
                         message=f"  {STYLE_DIM}Info: Membership request is pending. Skipping.{STYLE_RESET}"
                     )
-                    logger.log_line("")
                     if idx < len(enabled_groups) - 1:
                         sleep_time = random.randint(2, 5)
                         print(f"  Sleeping for {sleep_time}s before next group...", end="", flush=True)
@@ -2294,7 +2293,6 @@ def run_post(session_dir, config_path, test_mode=False):
                         is_skipped=True,
                         message=f"  {STYLE_DIM}Info: Not a member of this private group. Skipping.{STYLE_RESET}"
                     )
-                    logger.log_line("")
                     if idx < len(enabled_groups) - 1:
                         sleep_time = random.randint(2, 5)
                         print(f"  Sleeping for {sleep_time}s before next group...", end="", flush=True)
