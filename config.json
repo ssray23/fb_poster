@@ -1,15 +1,10 @@
 {
-  "post_text": "\ud83d\udecf\ufe0f <b>Rooms/Flat</b> <b>available</b> <b>in</b> <b>Ealing</b> <b>this</b> <b>summer</b>\u00a0\n\ud83d\udcb7 <b>\u00a3700/</b>month or <b>\u00a3950/</b>month (Entire place \u00a3<b>1550</b>/month)\u00a0\n\ud83d\udcc5 <b>Mid</b>-<b>July</b> to <b>end</b> <b>of</b> <b>August</b>\u00a0\n\ud83e\ude91 <b>Furnished</b> & ready to move in\u00a0\n\ud83d\udcf2 WhatsApp / call / text: <b>07832</b> <b>899231</b>",
+  "post_text": "\ud83d\udecf\ufe0f <b>Rooms/Flat</b> <b>available</b> <b>in</b> <b>Ealing</b> <b>this</b> <b>summer</b>\u00a0\n\ud83d\udcb7 <b>\u00a3700/</b>month or <b>\u00a3950/</b>month (Entire place \u00a3<b>1600</b>/month)\u00a0\n\ud83d\udcc5 <b>Mid</b>-<b>July</b> to <b>end</b> <b>of</b> <b>August</b>\u00a0\n\ud83e\ude91 <b>Furnished</b> & ready to move in\u00a0\n\ud83d\udcf2 WhatsApp / call / text: <b>07832</b> <b>899231</b>",
   "delay_between_posts_range": [
     300,
     900
   ],
   "groups": [
-    {
-      "name": "Indians In London",
-      "url": "https://www.facebook.com/groups/indians.london/",
-      "enabled": false
-    },
     {
       "name": "London - housing and roommates",
       "url": "https://www.facebook.com/groups/london.housing.and.roommates/",
@@ -61,6 +56,21 @@
       "enabled": false
     },
     {
+      "name": "Indians.London",
+      "url": "https://www.facebook.com/groups/indians.london/",
+      "enabled": false
+    },
+    {
+      "name": "AirBnB Hosts - Tips & Tricks",
+      "url": "https://www.facebook.com/groups/3215918995319204/",
+      "enabled": false
+    },
+    {
+      "name": "Airbnb Host Community UK",
+      "url": "https://www.facebook.com/groups/192868601963129/",
+      "enabled": false
+    },
+    {
       "name": "UK Indian society",
       "url": "https://www.facebook.com/groups/547820719938186/",
       "enabled": false
@@ -103,7 +113,7 @@
     {
       "name": "Indiansinslough",
       "url": "https://www.facebook.com/groups/IndiansInSlough/",
-      "enabled": false
+      "enabled": true
     },
     {
       "name": "Indianfriendsinlondon",
@@ -123,7 +133,8 @@
     {
       "name": "London Student Accommodation 2025-2026",
       "url": "https://www.facebook.com/groups/1223636181513739/",
-      "enabled": true
+      "enabled": true,
+      "last_posted_at": 1781640045.4224582
     },
     {
       "name": "Wimbledon, London - Rent Apartment House Flat Studio Room Roommate",
@@ -138,7 +149,8 @@
     {
       "name": "London Accommodation for UK Students",
       "url": "https://www.facebook.com/groups/724354792718258/",
-      "enabled": true
+      "enabled": true,
+      "last_posted_at": 1781642370.1837041
     },
     {
       "name": "Apartments for rent - London | Rent Apartments Houses Rooms",
@@ -148,12 +160,14 @@
     {
       "name": "Rent A Room In London",
       "url": "https://www.facebook.com/groups/1769643143069770/",
-      "enabled": true
+      "enabled": true,
+      "last_posted_at": 1781644123.915591
     },
     {
       "name": "Londonflatsforrent",
       "url": "https://www.facebook.com/groups/londonflatsforrent/",
-      "enabled": true
+      "enabled": true,
+      "last_posted_at": 1781644741.296581
     },
     {
       "name": "London Flatmates",
@@ -163,7 +177,8 @@
     {
       "name": "London rentals - private landlords only",
       "url": "https://www.facebook.com/groups/281324592626595/",
-      "enabled": true
+      "enabled": true,
+      "last_posted_at": 1781646017.2274098
     },
     {
       "name": "Indian In London",
@@ -271,12 +286,6 @@
       "name": "Brentford friends",
       "url": "https://www.facebook.com/groups/572371641413407/",
       "enabled": false
-    },
-    {
-      "name": "Private landlord rentals near me",
-      "url": "https://www.facebook.com/groups/232170739540815/",
-      "enabled": false,
-      "last_posted_at": 1781308201.608223
     },
     {
       "name": "Rent Flat In London | Stylish, Modern & Affordable | Houses Flats Rooms",
@@ -839,9 +848,9 @@
   "photos_directory": "pics",
   "buy_sell_info": {
     "enabled": true,
-    "title": "Rooms/Flat available in Ealing in Summer",
-    "price": "1550",
+    "title": "Rooms/Flat available in Ealing this Summer",
+    "price": "1600",
     "location": "Ealing",
-    "description": "A beautifully styled, sun-drenched one-bedroom flat available on rent from 15th July onwards\n\nAvailable from\u00a0mid-July to mid-Sept only.\n\n\ud83d\udccd The Location & Transport\n\t\u2022\tGunnersbury / Kew Bridge / South Ealing\u00a0area (5-min walk to Brentford Station,\u00a010-minute walk to South Ealing Underground - Piccadilly Line, Nearest Bus Stop just opposite the building).\n\t\u2022\tExcellent, fast, direct transport links to\u00a0Central London\u00a0and\u00a0Heathrow Airport.\n\t\u2022\tA short walk to the River Thames, High Street, local pubs, shops and green spaces. A Sainsbury\u2019s store is just a few metres away from the building for groceries.\n\t\u2022\t\n\ud83c\udfe1 The Space\n\t\u2022\tLiving Area:\u00a0Bright, open-plan kitchen and living space with high-speed Wi-Fi and a Smart TV\u2014perfect for working from home.\n\t\u2022\tBalcony:\u00a0Private balcony with plants, ideal for morning coffee rituals.\n\t\u2022\tBedroom:\u00a0Double bed with ample built-in wardrobe storage.\n\t\u2022\tKitchen:\u00a0Fully equipped with an espresso coffee machine, air fryer, oven, microwave, dishwasher, and a washing machine with dryer."
+    "description": "A beautifully styled, sun-drenched one-bedroom flat available on rent from 15th July onwards.\n\nAvailable from\u00a0mid-July to mid-Sept only.\n\n\ud83d\udccd The Location & Transport\n\t\u2022\tGunnersbury / Kew Bridge / South Ealing\u00a0area (5-min walk to Brentford Station,\u00a010-minute walk to South Ealing Underground - Piccadilly Line, Nearest Bus Stop just opposite the building).\n\t\u2022\tExcellent, fast, direct transport links to\u00a0Central London\u00a0and\u00a0Heathrow Airport.\n\t\u2022\tA short walk to the River Thames, High Street, local pubs, shops and green spaces. A Sainsbury\u2019s store is just a few metres away from the building for groceries.\n\t\u2022\t\n\ud83c\udfe1 The Space\n\t\u2022\tLiving Area:\u00a0Bright, open-plan kitchen and living space with high-speed Wi-Fi and a Smart TV\u2014perfect for working from home.\n\t\u2022\tBalcony:\u00a0Private balcony with plants, ideal for morning coffee rituals.\n\t\u2022\tBedroom:\u00a0Double bed with ample built-in wardrobe storage.\n\t\u2022\tKitchen:\u00a0Fully equipped with an espresso coffee machine, air fryer, oven, microwave, dishwasher, and a washing machine with dryer."
   }
 }

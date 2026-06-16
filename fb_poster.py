@@ -2223,6 +2223,7 @@ def run_post(session_dir, config_path, test_mode=False):
             url = group.get("url")
             
             logger = GroupLogger(idx + 1, len(enabled_groups), name, url)
+            posted_successfully = False
             
             # Skip if we posted to this group in the last 1 hour (only in live mode)
             last_posted = group.get("last_posted_at")
@@ -2273,10 +2274,10 @@ def run_post(session_dir, config_path, test_mode=False):
                     )
                     logger.log_line("")
                     if idx < len(enabled_groups) - 1:
-                        sleep_time = random.randint(2, 5) if test_mode else random.randint(delay_range[0], delay_range[1])
-                        print(f"  Sleeping for {sleep_time}s to maintain safe posting frequency...", end="", flush=True)
+                        sleep_time = random.randint(2, 5)
+                        print(f"  Sleeping for {sleep_time}s before next group...", end="", flush=True)
                         time.sleep(sleep_time)
-                        print(f"\r  {STYLE_DIM}Sleeping for {sleep_time}s to maintain safe posting frequency... Done{STYLE_RESET}\033[K")
+                        print(f"\r  {STYLE_DIM}Sleeping for {sleep_time}s before next group... Done{STYLE_RESET}\033[K")
                     print("")
                     continue
                     
@@ -2287,10 +2288,10 @@ def run_post(session_dir, config_path, test_mode=False):
                     )
                     logger.log_line("")
                     if idx < len(enabled_groups) - 1:
-                        sleep_time = random.randint(2, 5) if test_mode else random.randint(delay_range[0], delay_range[1])
-                        print(f"  Sleeping for {sleep_time}s to maintain safe posting frequency...", end="", flush=True)
+                        sleep_time = random.randint(2, 5)
+                        print(f"  Sleeping for {sleep_time}s before next group...", end="", flush=True)
                         time.sleep(sleep_time)
-                        print(f"\r  {STYLE_DIM}Sleeping for {sleep_time}s to maintain safe posting frequency... Done{STYLE_RESET}\033[K")
+                        print(f"\r  {STYLE_DIM}Sleeping for {sleep_time}s before next group... Done{STYLE_RESET}\033[K")
                     print("")
                     continue
 
@@ -2319,10 +2320,10 @@ def run_post(session_dir, config_path, test_mode=False):
                     )
                     logger.log_line("")
                     if idx < len(enabled_groups) - 1:
-                        sleep_time = random.randint(2, 5) if test_mode else random.randint(delay_range[0], delay_range[1])
-                        print(f"  Sleeping for {sleep_time}s to maintain safe posting frequency...", end="", flush=True)
+                        sleep_time = random.randint(2, 5)
+                        print(f"  Sleeping for {sleep_time}s before next group...", end="", flush=True)
                         time.sleep(sleep_time)
-                        print(f"\r  {STYLE_DIM}Sleeping for {sleep_time}s to maintain safe posting frequency... Done{STYLE_RESET}\033[K")
+                        print(f"\r  {STYLE_DIM}Sleeping for {sleep_time}s before next group... Done{STYLE_RESET}\033[K")
                     print("")
                     continue
 
@@ -2406,10 +2407,10 @@ def run_post(session_dir, config_path, test_mode=False):
                                     )
                                     # Handle sleep before continuing to next group
                                     if idx < len(enabled_groups) - 1:
-                                        sleep_time = random.randint(2, 5) if test_mode else random.randint(delay_range[0], delay_range[1])
-                                        print(f"  Sleeping for {sleep_time}s to maintain safe posting frequency...", end="", flush=True)
+                                        sleep_time = random.randint(2, 5)
+                                        print(f"  Sleeping for {sleep_time}s before next group...", end="", flush=True)
                                         time.sleep(sleep_time)
-                                        print(f"\r  {STYLE_DIM}Sleeping for {sleep_time}s to maintain safe posting frequency... Done{STYLE_RESET}\033[K")
+                                        print(f"\r  {STYLE_DIM}Sleeping for {sleep_time}s before next group... Done{STYLE_RESET}\033[K")
                                     print("")
                                     continue
                                 else:
@@ -2451,6 +2452,20 @@ def run_post(session_dir, config_path, test_mode=False):
                         if price_input.count() > 0:
                             price_input.first.fill(buy_sell_info.get("price", ""))
                             page.wait_for_timeout(1000)
+                            
+                        # Find and select Condition (required in some groups/designs)
+                        cond_trigger = page.locator('label:has-text("Condition"), div[aria-label="Condition"]')
+                        if cond_trigger.count() == 0:
+                            cond_trigger = page.get_by_text("Condition", exact=True)
+                            
+                        if cond_trigger.count() > 0 and cond_trigger.first.is_visible():
+                            try:
+                                cond_trigger.first.click()
+                                page.wait_for_timeout(1500)
+                                page.locator('div[role="option"]:has-text("New"), div[role="option"]:has-text("Used – like new")').first.click()
+                                page.wait_for_timeout(1000)
+                            except Exception:
+                                pass
                             
                         # Find and fill Location
                         location_input = page.locator('label:has-text("Location") input, label:has-text("Location") textarea')
@@ -2561,6 +2576,7 @@ def run_post(session_dir, config_path, test_mode=False):
                                 # Update last posted timestamp and save config
                                 group["last_posted_at"] = time.time()
                                 save_config(config_path, config)
+                                posted_successfully = True
                                 logger.log_substep_done("Filling Buy/Sell form", "Posted successfully")
                                 logger.finish(success=True)
                             else:
@@ -2572,10 +2588,10 @@ def run_post(session_dir, config_path, test_mode=False):
                         
                     # Handle sleep before continuing to next group
                     if idx < len(enabled_groups) - 1:
-                        sleep_time = random.randint(2, 5) if test_mode else random.randint(delay_range[0], delay_range[1])
-                        print(f"  Sleeping for {sleep_time}s to maintain safe posting frequency...", end="", flush=True)
+                        sleep_time = random.randint(2, 5)
+                        print(f"  Sleeping for {sleep_time}s before next group...", end="", flush=True)
                         time.sleep(sleep_time)
-                        print(f"\r  {STYLE_DIM}Sleeping for {sleep_time}s to maintain safe posting frequency... Done{STYLE_RESET}\033[K")
+                        print(f"\r  {STYLE_DIM}Sleeping for {sleep_time}s before next group... Done{STYLE_RESET}\033[K")
                     print("")
                     continue
 
@@ -2705,6 +2721,12 @@ def run_post(session_dir, config_path, test_mode=False):
                             is_skipped=True,
                             message=f"  {STYLE_DIM}Info: {reason}. Skipping.{STYLE_RESET}"
                         )
+                    if idx < len(enabled_groups) - 1:
+                        sleep_time = random.randint(2, 5)
+                        print(f"  Sleeping for {sleep_time}s before next group...", end="", flush=True)
+                        time.sleep(sleep_time)
+                        print(f"\r  {STYLE_DIM}Sleeping for {sleep_time}s before next group... Done{STYLE_RESET}\033[K")
+                    print("")
                     continue
                 else:
                     logger.log_substep_done("Opening composer", composer_label)
@@ -2765,6 +2787,12 @@ def run_post(session_dir, config_path, test_mode=False):
                     logger.log_line(f"  {CROSS_RED} Could not locate the input text box. Skipping.")
                     page.keyboard.press("Escape")
                     logger.finish(success=False)
+                    if idx < len(enabled_groups) - 1:
+                        sleep_time = random.randint(2, 5)
+                        print(f"  Sleeping for {sleep_time}s before next group...", end="", flush=True)
+                        time.sleep(sleep_time)
+                        print(f"\r  {STYLE_DIM}Sleeping for {sleep_time}s before next group... Done{STYLE_RESET}\033[K")
+                    print("")
                     continue
                     
                 logger.log_substep_start("Typing message")
@@ -2891,6 +2919,12 @@ def run_post(session_dir, config_path, test_mode=False):
                         logger.log_substep_done("Publishing post", "Failed to find 'Post' button")
                         page.keyboard.press("Escape")
                         logger.finish(success=False)
+                        if idx < len(enabled_groups) - 1:
+                            sleep_time = random.randint(2, 5)
+                            print(f"  Sleeping for {sleep_time}s before next group...", end="", flush=True)
+                            time.sleep(sleep_time)
+                            print(f"\r  {STYLE_DIM}Sleeping for {sleep_time}s before next group... Done{STYLE_RESET}\033[K")
+                        print("")
                         continue
                         
                     logger.log_substep_done("Publishing post", "Submitted")
@@ -2911,6 +2945,7 @@ def run_post(session_dir, config_path, test_mode=False):
                     # Update last posted timestamp and save config
                     group["last_posted_at"] = time.time()
                     save_config(config_path, config)
+                    posted_successfully = True
                     
             except Exception as e:
                 logger.finish(
@@ -2919,10 +2954,16 @@ def run_post(session_dir, config_path, test_mode=False):
                 )
                 
             if idx < len(enabled_groups) - 1:
-                sleep_time = random.randint(2, 5) if test_mode else random.randint(delay_range[0], delay_range[1])
-                print(f"  Sleeping for {sleep_time}s to maintain safe posting frequency...", end="", flush=True)
+                if test_mode or not posted_successfully:
+                    sleep_time = random.randint(2, 5)
+                    msg = f"  Sleeping for {sleep_time}s before next group..."
+                else:
+                    sleep_time = random.randint(delay_range[0], delay_range[1])
+                    msg = f"  Sleeping for {sleep_time}s to maintain safe posting frequency..."
+                
+                print(msg, end="", flush=True)
                 time.sleep(sleep_time)
-                print(f"\r  {STYLE_DIM}Sleeping for {sleep_time}s to maintain safe posting frequency... Done{STYLE_RESET}\033[K")
+                print(f"\r  {STYLE_DIM}{msg} Done{STYLE_RESET}\033[K")
             print("")
                 
         context.close()
