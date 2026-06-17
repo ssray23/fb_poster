@@ -273,18 +273,37 @@ CONFIG VALUES TO FILL:
 
 Analyze the fields and return a JSON action plan to fill this form."""
 
-    response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
-        messages=[
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": user_message}
-        ],
-        temperature=0.1,
-        max_completion_tokens=2000,
-        response_format={"type": "json_object"}
-    )
+    models_to_try = [
+        "llama-3.3-70b-versatile",
+        "llama-3.1-8b-instant",
+        "mixtral-8x7b-32768"
+    ]
     
-    # Parse the response
+    response = None
+    last_error = None
+    
+    for model_name in models_to_try:
+        try:
+            response = client.chat.completions.create(
+                model=model_name,
+                messages=[
+                    {"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "user", "content": user_message}
+                ],
+                response_format={"type": "json_object"},
+                temperature=0.1
+            )
+            break # Success!
+        except Exception as e:
+            last_error = e
+            if "429" in str(e) or "rate_limit" in str(e).lower():
+                continue
+            else:
+                raise e # If it's a different error, fail normally
+                
+    if not response:
+        raise last_error
+
     text = response.choices[0].message.content.strip()
     
     action_plan = json.loads(text)
@@ -392,6 +411,7 @@ def execute_form_actions(page, action_plan, image_paths, logger=None):
                             _log(f"AI: No options found for '{field_name}'")
                 else:
                     _log(f"AI: Locator '{locator_str}' not found for '{field_name}'")
+                    _try_fallback_dropdown(page, mapping, _log)
                     
         except Exception as e:
             _log(f"AI: Error on '{field_name}': {e}")
@@ -489,6 +509,47 @@ def _try_fallback_fill(page, mapping, _log, autocomplete=False):
             continue
     
     _log(f"AI: All fallbacks failed for '{field_name}'")
+    return False
+
+
+def _try_fallback_dropdown(page, mapping, _log):
+    field_name = mapping.get("field_name", "")
+    option_text = mapping.get("option_text", "New")
+    
+    fallback_selectors = {
+        "condition": [
+            'label:has-text("Condition")',
+            'div:has-text("Condition") > div[role="button"]',
+            'div:has-text("Condition") > div > div[role="button"]',
+            'div[aria-label="Condition"]',
+        ]
+    }
+    
+    selectors = fallback_selectors.get(field_name, [])
+    for selector in selectors:
+        try:
+            el = page.locator(selector)
+            if el.count() > 0 and el.first.is_visible():
+                el.first.click()
+                page.wait_for_timeout(1500)
+                
+                option = page.locator(f'div[role="option"]:has-text("{option_text}")')
+                if option.count() > 0:
+                    option.first.click()
+                    page.wait_for_timeout(1000)
+                    _log(f"AI: Fallback selected '{option_text}' for '{field_name}' via {selector}")
+                    return True
+                
+                any_option = page.locator('div[role="option"]')
+                if any_option.count() > 0:
+                    any_option.first.click()
+                    page.wait_for_timeout(1000)
+                    _log(f"AI: Fallback selected first option for '{field_name}' via {selector}")
+                    return True
+        except Exception:
+            continue
+            
+    _log(f"AI: All dropdown fallbacks failed for '{field_name}'")
     return False
 
 

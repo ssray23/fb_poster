@@ -1,0 +1,1315 @@
+
+● [19/110] Group: Short Term Stay - Holiday in London (https://www.facebook.com/groups/1482404975307121/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
+  Status: Post submitted successfully!
+  Sleeping for 543s to maintain safe posting frequency... Done
+
+
+● [20/110] Group: London Short Lets (https://www.facebook.com/groups/7759789140/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
+  Status: Post submitted successfully!
+  Sleeping for 550s to maintain safe posting frequency... Done
+
+
+● [21/110] Group: LONDON WAREHOUSE SUBLETS - Short term homes. (https://www.facebook.com/groups/840216079767352/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
+  Status: Post submitted successfully!
+  Sleeping for 472s to maintain safe posting frequency... Done
+
+
+● [22/110] Group: House rents in uk🇬🇧 (https://www.facebook.com/groups/1356485531662803/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
+  Status: Post submitted successfully!
+  Sleeping for 774s to maintain safe posting frequency... Done
+
+
+● [23/110] Group: Properties to Rent in London from Private Landlords | Houses Flats Rooms (https://www.facebook.com/groups/I4856/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input
+  AI: Filled 'price' via label:has-text("Price") input
+  AI: Selected 'New' for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Posted successfully
+  Sleeping for 4s before next group... Done
+
+
+● [24/110] Group: London Room Share (https://www.facebook.com/groups/Londonroomshare/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
+  Status: Post submitted successfully!
+  Sleeping for 885s to maintain safe posting frequency... Done
+
+
+● [25/110] Group: NO RESTRICTIONS!! London buy&sell ANYTHING (https://www.facebook.com/groups/1753414451602470/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input
+  AI: Filled 'price' via label:has-text("Price") input
+  AI: Selected 'New' for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Posted successfully
+  Sleeping for 2s before next group... Done
+
+
+● [26/110] Group: West London Anything For Sale (https://www.facebook.com/groups/670438073086021/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input[type="text"]
+  AI: Filled 'price' via label:has-text("Price") input[type="text"]
+  AI: Locator 'label:has-text("Condition") label' not found for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Failed: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("button:has-text(\"Next\"), div[role=\"button\"]:has-text(\"Next\")").first
+    - locator resolved to <div tabindex="0" role="button" aria-label="Next" aria-disabled="true" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x❌ [26/110] Group: West London Anything For Sale (https://www.facebook.com/groups/670438073086021/)
+0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3">…</div>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    57 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
+
+  Sleeping for 3s before next group... Done
+
+
+● [27/110] Group: London Rooms Club (https://www.facebook.com/groups/449865575404374/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input[type="text"]
+  AI: Filled 'price' via label:has-text("Price") input[type="text"]
+  AI: Locator 'label:has-text("Condition") label' not found for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Failed: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("button:has-text(\"Next\"), div[role=\"button\"]:has-text(\"Next\")").first
+    - locator resolved to <div tabindex="0" role="button" aria-label="Next" aria-disabled="true" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x❌ [27/110] Group: London Rooms Club (https://www.facebook.com/groups/449865575404374/)
+0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3">…</div>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    57 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
+
+  Sleeping for 3s before next group... Done
+
+
+❌ [28/110] Group: LONDON- House/Flats/ Spare Rooms to Rent/Sublet (https://www.facebook.com/groups/1339808747177146/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 0 pre-actions and 0 field mappings
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Failed: Post/Publish button not found or not enabled
+  Sleeping for 5s before next group... Done
+
+
+● [29/110] Group: London - Rent Houses Flats Rooms (https://www.facebook.com/groups/I6976/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input[type="text"]
+  AI: Filled 'price' via label:has-text("Price") input[type="text"]
+  AI: Locator 'label:has-text("Condition") label' not found for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Failed: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("button:has-text(\"Next\"), div[role=\"button\"]:has-text(\"Next\")").first
+    - locator resolved to <div tabindex="0" role="button" aria-label="Next" aria-disabled="true" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x❌ [29/110] Group: London - Rent Houses Flats Rooms (https://www.facebook.com/groups/I6976/)
+0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3">…</div>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    57 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
+
+  Sleeping for 2s before next group... Done
+
+
+● [30/110] Group: Rent Flat In London | Stylish, Modern & Affordable | Houses Flats Rooms (https://www.facebook.com/groups/I0148/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input
+  AI: Filled 'price' via label:has-text("Price") input
+  AI: Selected 'New' for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Posted successfully
+  Sleeping for 3s before next group... Done
+
+
+● [31/110] Group: London - Rent Apartments Houses Rooms (https://www.facebook.com/groups/I3275/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input[type="text"]
+  AI: Filled 'price' via label:has-text("Price") input[type="text"]
+  AI: Locator 'label:has-text("Condition") label' not found for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Failed: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("button:has-text(\"Next\"), div[role=\"button\"]:has-text(\"Next\")").first
+    - locator resolved to <div tabindex="0" role="button" aria-label="Next" aria-disabled="true" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x❌ [31/110] Group: London - Rent Apartments Houses Rooms (https://www.facebook.com/groups/I3275/)
+0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3">…</div>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    57 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
+
+  Sleeping for 5s before next group... Done
+
+
+● [32/110] Group: Londonrentals (https://www.facebook.com/groups/londonrentals/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
+  Status: Post submitted successfully!
+  Sleeping for 452s to maintain safe posting frequency... Done
+
+
+● [33/110] Group: East Ham, London - Rent Apartment House Flat Studio Room Roommate (https://www.facebook.com/groups/I0408/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input
+  AI: Filled 'price' via label:has-text("Price") input
+  AI: Selected 'New' for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Posted successfully
+  Sleeping for 2s before next group... Done
+
+
+● [34/110] Group: ROOMMATE LONDON (https://www.facebook.com/groups/1715516288706671/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
+  Status: Post submitted successfully!
+  Sleeping for 835s to maintain safe posting frequency... Done
+
+
+● [35/110] Group: LONDON - Rent Apartment House Flat Studio Room Roommate (https://www.facebook.com/groups/I6986/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input[type="text"]
+  AI: Filled 'price' via label:has-text("Price") input[type="text"]
+  AI: Locator 'label:has-text("Condition") label' not found for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Failed: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("button:has-text(\"Next\"), div[role=\"button\"]:has-text(\"Next\")").first
+    - locator resolved to <div tabindex="0" role="button" aria-label="Next" aria-disabled="true" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x❌ [35/110] Group: LONDON - Rent Apartment House Flat Studio Room Roommate (https://www.facebook.com/groups/I6986/)
+0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3">…</div>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    57 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
+
+  Sleeping for 3s before next group... Done
+
+
+● [36/110] Group: Rent in London - No Agency Fees (https://www.facebook.com/groups/I3643/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input[type="text"]
+  AI: Filled 'price' via label:has-text("Price") input[type="text"]
+  AI: Locator 'label:has-text("Condition") label' not found for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Failed: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("button:has-text(\"Next\"), div[role=\"button\"]:has-text(\"Next\")").first
+    - locator resolved to <div tabindex="0" role="button" aria-label="Next" aria-disabled="true" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x❌ [36/110] Group: Rent in London - No Agency Fees (https://www.facebook.com/groups/I3643/)
+0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3">…</div>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    57 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
+
+  Sleeping for 3s before next group... Done
+
+
+● [37/110] Group: Renting room in London for muslims (https://www.facebook.com/groups/806124354643530/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
+  Status: Post submitted successfully!
+  Sleeping for 828s to maintain safe posting frequency... Done
+
+
+● [38/110] Group: London - Rent Apartment House Flat Studio Room Roommate (https://www.facebook.com/groups/I0606/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input[type="text"]
+  AI: Filled 'price' via label:has-text("Price") input[type="text"]
+  AI: Locator 'label:has-text("Condition") label' not found for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Failed: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("button:has-text(\"Next\"), div[role=\"button\"]:has-text(\"Next\")").first
+    - locator resolved to <div tabindex="0" role="button" aria-label="Next" aria-disabled="true" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x972fbf x10w94by x1qhh985 x14e42zd x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x16tdsg8 x1hl2dhg xggy1nq x1h6gzvc x1fmog5m xu25z❌ [38/110] Group: London - Rent Apartment House Flat Studio Room Roommate (https://www.facebook.com/groups/I0606/)
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    56 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+
+  Sleeping for 3s before next group... Done
+
+
+● [39/110] Group: Londonuk.Room1 (https://www.facebook.com/groups/LondonUK.Room1/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
+  Status: Post submitted successfully!
+  Sleeping for 532s to maintain safe posting frequency... Done
+
+
+● [40/110] Group: London - Find a room (https://www.facebook.com/groups/371348366566468/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input[type="text"]
+  AI: Filled 'price' via label:has-text("Price") input[type="text"]
+  AI: Locator 'label:has-text("Condition") label' not found for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Failed: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("button:has-text(\"Next\"), div[role=\"button\"]:has-text(\"Next\")").first
+    - locator resolved to <div tabindex="0" role="button" aria-label="Next" aria-disabled="true" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x❌ [40/110] Group: London - Find a room (https://www.facebook.com/groups/371348366566468/)
+0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3">…</div>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    57 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
+
+  Sleeping for 2s before next group... Done
+
+
+● [41/110] Group: House- Flat- Renting Uk (https://www.facebook.com/groups/1809680259570327/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
+  Status: Post submitted successfully!
+  Sleeping for 666s to maintain safe posting frequency... Done
+
+
+● [42/110] Group: Rent A Room in East London (https://www.facebook.com/groups/669823626456725/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
+  Status: Post submitted successfully!
+  Sleeping for 578s to maintain safe posting frequency... Done
+
+
+● [43/110] Group: London House/Flat/Spare Room To Rent (https://www.facebook.com/groups/I5678/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input
+  AI: Filled 'price' via label:has-text("Price") input
+  AI: Locator 'label:has-text("Condition") label' not found for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Failed: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("button:has-text(\"Next\"), div[role=\"button\"]:has-text(\"Next\")").first
+    - locator resolved to <div tabindex="0" role="button" aria-label="Next" aria-disabled="true" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x❌ [43/110] Group: London House/Flat/Spare Room To Rent (https://www.facebook.com/groups/I5678/)
+0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3">…</div>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    57 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
+
+  Sleeping for 3s before next group... Done
+
+
+● [44/110] Group: Flatshare LONDON (https://www.facebook.com/groups/1667034170197733/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input[type="text"]
+  AI: Filled 'price' via label:has-text("Price") input[type="text"]
+  AI: Locator 'label:has-text("Condition") label' not found for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Failed: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("button:has-text(\"Next\"), div[role=\"button\"]:has-text(\"Next\")").first
+    - locator resolved to <div tabindex="0" role="button" aria-label="Next" aria-disabled="true" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x❌ [44/110] Group: Flatshare LONDON (https://www.facebook.com/groups/1667034170197733/)
+0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3">…</div>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    57 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
+
+  Sleeping for 5s before next group... Done
+
+
+● [45/110] Group: London Housing, room & flat share (https://www.facebook.com/groups/365780990294953/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
+  Status: Post submitted successfully!
+  Sleeping for 625s to maintain safe posting frequency... Done
+
+
+● [46/110] Group: Rooms,Studios,Flats,Houses for rent in London (https://www.facebook.com/groups/I4746/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input[type="text"]
+  AI: Filled 'price' via label:has-text("Price") input[type="text"]
+  AI: Locator 'label:has-text("Condition") label' not found for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Failed: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("button:has-text(\"Next\"), div[role=\"button\"]:has-text(\"Next\")").first
+    - locator resolved to <div tabindex="0" role="button" aria-label="Next" aria-disabled="true" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x❌ [46/110] Group: Rooms,Studios,Flats,Houses for rent in London (https://www.facebook.com/groups/I4746/)
+0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3">…</div>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    57 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
+
+  Sleeping for 5s before next group... Done
+
+
+● [47/110] Group: London Apartment Rentals, Houses, Sublets and Rooms (https://www.facebook.com/groups/138285296657506/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
+  Status: Post submitted successfully!
+  Sleeping for 818s to maintain safe posting frequency... Done
+
+
+● [48/110] Group: London, Harrow - Rent Houses Flats Rooms Apartments Studios Cottages (https://www.facebook.com/groups/I0053/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input[type="text"]
+  AI: Filled 'price' via label:has-text("Price") input[type="text"]
+  AI: Locator 'label:has-text("Condition") label' not found for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Failed: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("button:has-text(\"Next\"), div[role=\"button\"]:has-text(\"Next\")").first
+    - locator resolved to <div tabindex="0" role="button" aria-label="Next" aria-disabled="true" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x❌ [48/110] Group: London, Harrow - Rent Houses Flats Rooms Apartments Studios Cottages (https://www.facebook.com/groups/I0053/)
+0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3">…</div>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    57 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
+
+  Sleeping for 5s before next group... Done
+
+
+● [49/110] Group: London Accomodation (https://www.facebook.com/groups/883763051664366/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
+  Status: Post submitted successfully!
+  Sleeping for 602s to maintain safe posting frequency... Done
+
+
+● [50/110] Group: London - Rent Houses Flats Apartments Studios Room (https://www.facebook.com/groups/I0258/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input[type="text"]
+  AI: Filled 'price' via label:has-text("Price") input[type="text"]
+  AI: Locator 'label:has-text("Condition") label' not found for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Failed: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("button:has-text(\"Next\"), div[role=\"button\"]:has-text(\"Next\")").first
+    - locator resolved to <div tabindex="0" role="button" aria-label="Next" aria-disabled="true" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x❌ [50/110] Group: London - Rent Houses Flats Apartments Studios Room (https://www.facebook.com/groups/I0258/)
+0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3">…</div>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    57 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
+
+  Sleeping for 5s before next group... Done
+
+
+● [51/110] Group: Rent Apartments in London | Rent Houses Flats Rooms Apartments Studios (https://www.facebook.com/groups/I4288/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input[type="text"]
+  AI: Filled 'price' via label:has-text("Price") input[type="text"]
+  AI: Locator 'label:has-text("Condition") label' not found for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Failed: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("button:has-text(\"Next\"), div[role=\"button\"]:has-text(\"Next\")").first
+    - locator resolved to <div tabindex="0" role="button" aria-label="Next" aria-disabled="true" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x972fbf x10w94by x1qhh985 x14e42zd x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x16tdsg8 x1hl2dhg xggy1nq x1h6gzvc x1fmog5m xu25z❌ [51/110] Group: Rent Apartments in London | Rent Houses Flats Rooms Apartments Studios (https://www.facebook.com/groups/I4288/)
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    56 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+
+  Sleeping for 4s before next group... Done
+
+
+● [52/110] Group: ROOMS TO RENT LONDON UK (https://www.facebook.com/groups/238935859593899/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input
+  AI: Filled 'price' via label:has-text("Price") input
+  AI: Selected 'New' for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Posted successfully
+  Sleeping for 2s before next group... Done
+
+
+● [53/110] Group: Homes for rent by private landlords. (https://www.facebook.com/groups/1006241903856935/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
+  Status: Post submitted successfully!
+  Sleeping for 627s to maintain safe posting frequency... Done
+
+
+● [54/110] Group: LONDON 🇬🇧 - Rent a House, Villa, Apartment, Flat, Condo, Studio, Room (https://www.facebook.com/groups/1848175738808038/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input
+  AI: Filled 'price' via label:has-text("Price") input
+  AI: Selected 'New' for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Posted successfully
+  Sleeping for 2s before next group... Done
+
+
+● [55/110] Group: Rent a room in London | Rooms to rent in London‎ (https://www.facebook.com/groups/I7453/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input[type="text"]
+  AI: Filled 'price' via label:has-text("Price") input[type="text"]
+  AI: Locator 'label:has-text("Condition") label' not found for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Failed: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("button:has-text(\"Next\"), div[role=\"button\"]:has-text(\"Next\")").first
+    - locator resolved to <div tabindex="0" role="button" aria-label="Next" aria-disabled="true" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x❌ [55/110] Group: Rent a room in London | Rooms to rent in London‎ (https://www.facebook.com/groups/I7453/)
+0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3">…</div>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    57 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
+
+  Sleeping for 2s before next group... Done
+
+
+❌ [56/110] Group: Rent Houses & Flats & Rooms in London (https://www.facebook.com/groups/850904411732043/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 0 pre-actions and 0 field mappings
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Failed: Post/Publish button not found or not enabled
+  Sleeping for 5s before next group... Done
+
+
+❌ [57/110] Group: London Rent Houses Flats Apartments Studios Rooms Flatmates (https://www.facebook.com/groups/I9064/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 0 pre-actions and 4 field mappings
+  AI: Locator 'label:has-text("What are you selling?") input' not found for 'title'
+  AI: All fallbacks failed for 'title'
+  AI: Locator 'label:has-text("Price") input' not found for 'price'
+  AI: All fallbacks failed for 'price'
+  AI: Locator 'label:has-text("Location") input' not found for 'location'
+  AI: All fallbacks failed for 'location'
+  AI: Locator 'label:has-text("Description") textarea' not found for 'description'
+  AI: All fallbacks failed for 'description'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Failed: Post/Publish button not found or not enabled
+  Sleeping for 2s before next group... Done
+
+
+❌ [58/110] Group: Londonpropertysupport (https://www.facebook.com/groups/londonpropertysupport/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 0 pre-actions and 0 field mappings
+  Filling Buy/Sell form... Failed: Post/Publish button not found or not enabled
+  Sleeping for 3s before next group... Done
+
+
+● [59/110] Group: Rent A Room In London (https://www.facebook.com/groups/RentARoomInLondonOriginal/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
+  Status: Post submitted successfully!
+  Sleeping for 423s to maintain safe posting frequency... Done
+
+
+● [60/110] Group: Londonrooms069 (https://www.facebook.com/groups/londonrooms069/)
+  Navigating to group page... Done
+  Info: Profile is suspended in this group. Skipping.
+
+  Sleeping for 4s before next group... Done
+
+
+● [61/110] Group: Spare room to rent (https://www.facebook.com/groups/239417986221462/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
+  Status: Post submitted successfully!
+  Sleeping for 407s to maintain safe posting frequency... Done
+
+
+● [62/110] Group: London Rooms (https://www.facebook.com/groups/905177646205230/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
+  Status: Post submitted successfully!
+  Sleeping for 474s to maintain safe posting frequency... Done
+
+
+● [63/110] Group: Londonforrent (https://www.facebook.com/groups/LondonForRent/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
+  Status: Post submitted successfully!
+  Sleeping for 844s to maintain safe posting frequency... Done
+
+
+● [64/110] Group: Apartment Rent London (https://www.facebook.com/groups/517837759078009/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input[type="text"]
+  AI: Filled 'price' via label:has-text("Price") input[type="text"]
+  AI: Locator 'label:has-text("Condition") label' not found for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Failed: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("button:has-text(\"Next\"), div[role=\"button\"]:has-text(\"Next\")").first
+    - locator resolved to <div tabindex="0" role="button" aria-label="Next" aria-disabled="true" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x❌ [64/110] Group: Apartment Rent London (https://www.facebook.com/groups/517837759078009/)
+0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3">…</div>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    56 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
+
+  Sleeping for 4s before next group... Done
+
+
+● [65/110] Group: Rooms and flats to rent in London (https://www.facebook.com/groups/458070877541419/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input[type="text"]
+  AI: Filled 'price' via label:has-text("Price") input[type="text"]
+  AI: Locator 'label:has-text("Condition") label' not found for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Failed: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("button:has-text(\"Next\"), div[role=\"button\"]:has-text(\"Next\")").first
+    - locator resolved to <div tabindex="0" role="button" aria-label="Next" aria-disabled="true" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x❌ [65/110] Group: Rooms and flats to rent in London (https://www.facebook.com/groups/458070877541419/)
+0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3">…</div>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    57 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
+
+  Sleeping for 5s before next group... Done
+
+
+● [66/110] Group: London Rent Houses Flats Rooms Flatmates (https://www.facebook.com/groups/I4034/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input[type="text"]
+  AI: Filled 'price' via label:has-text("Price") input[type="text"]
+  AI: Locator 'label:has-text("Condition") label' not found for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Failed: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("button:has-text(\"Next\"), div[role=\"button\"]:has-text(\"Next\")").first
+    - locator resolved to <div tabindex="0" role="button" aria-label="Next" aria-disabled="true" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x❌ [66/110] Group: London Rent Houses Flats Rooms Flatmates (https://www.facebook.com/groups/I4034/)
+0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3">…</div>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    57 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
+
+  Sleeping for 5s before next group... Done
+
+
+● [67/110] Group: London Rooms for Rent & Roommates | Verified (https://www.facebook.com/groups/1852088085601853/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
+  Status: Post submitted successfully!
+  Sleeping for 375s to maintain safe posting frequency... Done
+
+
+● [68/110] Group: Flatshare Flat London 2026 (https://www.facebook.com/groups/413134178797535/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input[type="text"]
+  AI: Filled 'price' via label:has-text("Price") input[type="text"]
+  AI: Locator 'label:has-text("Condition") label' not found for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Failed: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("button:has-text(\"Next\"), div[role=\"button\"]:has-text(\"Next\")").first
+    - locator resolved to <div tabindex="0" role="button" aria-label="Next" aria-disabled="true" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x❌ [68/110] Group: Flatshare Flat London 2026 (https://www.facebook.com/groups/413134178797535/)
+0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3">…</div>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    57 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
+
+  Sleeping for 5s before next group... Done
+
+
+● [69/110] Group: London Student Accommodation 2026-27 (https://www.facebook.com/groups/1194870580872715/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
+  Status: Post submitted successfully!
+  Sleeping for 586s to maintain safe posting frequency... Done
+
+
+● [70/110] Group: UK Rental Properties (https://www.facebook.com/groups/176800802333075/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
+  Status: Post submitted successfully!
+  Sleeping for 726s to maintain safe posting frequency... Done
+
+
+● [71/110] Group: Islington, London - Rent Room House Flat Apartment Studio Sublets Roommate (https://www.facebook.com/groups/I3179/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input[type="text"]
+  AI: Filled 'price' via label:has-text("Price") input[type="text"]
+  AI: Locator 'label:has-text("Condition") label' not found for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Failed: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("button:has-text(\"Next\"), div[role=\"button\"]:has-text(\"Next\")").first
+    - locator resolved to <div tabindex="0" role="button" aria-label="Next" aria-disabled="true" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x❌ [71/110] Group: Islington, London - Rent Room House Flat Apartment Studio Sublets Roommate (https://www.facebook.com/groups/I3179/)
+0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3">…</div>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    57 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
+
+  Sleeping for 5s before next group... Done
+
+
+● [72/110] Group: Short Let London (https://www.facebook.com/groups/1160238398134524/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
+  Status: Post submitted successfully!
+  Sleeping for 409s to maintain safe posting frequency... Done
+
+
+● [73/110] Group: Rentaroominlondon (https://www.facebook.com/groups/rentaroominlondon/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input
+  AI: Filled 'price' via label:has-text("Price") input
+  AI: Selected 'New' for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Posted successfully
+  Sleeping for 3s before next group... Done
+
+
+● [74/110] Group: Rent Rooms In London (https://www.facebook.com/groups/lookingforaroominlondon/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Plan has 2 pre-actions and 3 field mappings
+  AI: Clicked 'Item for sale' (Select listing type)
+  AI: Clicked 'More details' (Expand hidden fields)
+  AI: Filled 'title' via label:has-text("Title") input[type="text"]
+  AI: Filled 'price' via label:has-text("Price") input[type="text"]
+  AI: Locator 'label:has-text("Condition") label' not found for 'condition'
+  AI: Uploaded 11 photo(s)
+  Filling Buy/Sell form... Failed: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("button:has-text(\"Next\"), div[role=\"button\"]:has-text(\"Next\")").first
+    - locator resolved to <div tabindex="0" role="button" aria-label="Next" aria-disabled="true" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x❌ [74/110] Group: Rent Rooms In London (https://www.facebook.com/groups/lookingforaroominlondon/)
+0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3">…</div>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    57 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
+
+  Sleeping for 3s before next group... Done
+
+
+● [75/110] Group: Londonroomsflatshomes (https://www.facebook.com/groups/LONDONROOMSFLATSHOMES/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+● [75/110] Group: Londonroomsflatshomes (https://www.facebook.com/groups/LONDONROOMSFLATSHOMES/)
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Error during AI form filling: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jm9tapfbeart4j9yabwhsraj` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99441, Requested 1591. Please try again in 14m51.647999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+  AI form filling failed: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jm9tapfbeart4j9yabwhsraj` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99441, Requested 1591. Please try again in 14m51.647999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}. Falling back to legacy logic.
+  Filling Buy/Sell form... Posted successfully
+  Sleeping for 5s before next group... Done
+
+
+● [76/110] Group: Houses to rent by private landlords (https://www.facebook.com/groups/3637750503172047/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
+  Status: Post submitted successfully!
+  Sleeping for 821s to maintain safe posting frequency... Done
+
+
+● [77/110] Group: London, Hounslow - Rent Houses Flats Rooms Apartments Studios Cottages (https://www.facebook.com/groups/I9520/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+  AI: Form not fully visible. Selecting listing type first...
+● [77/110] Group: London, Hounslow - Rent Houses Flats Rooms Apartments Studios Cottages (https://www.facebook.com/groups/I9520/)
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Error during AI form filling: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jm9tapfbeart4j9yabwhsraj` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 98366, Requested 3392. Please try again in 25m18.911999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+  AI form filling failed: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jm9tapfbeart4j9yabwhsraj` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 98366, Requested 3392. Please try again in 25m18.911999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}. Falling back to legacy logic.
+  Filling Buy/Sell form... Posted successfully
+  Sleeping for 4s before next group... Done
+
+
+● [78/110] Group: ROOM TO LET IN HOUNSLOW, HESTON, HAYES, EALING, LONDON (https://www.facebook.com/groups/108145490124255/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
+  Status: Post submitted successfully!
+  Sleeping for 543s to maintain safe posting frequency... Done
+
+
+● [79/110] Group: Rooms for rent in Hayes Harlington Heathrow Hounslow Southall (https://www.facebook.com/groups/1220973803579208/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
+  Status: Post submitted successfully!
+  Sleeping for 364s to maintain safe posting frequency... Done
+
+
+● [80/110] Group: 🏠 London Rooms, Flats & Houses to Rent – Tenants, Agents & Landlords (https://www.facebook.com/groups/1995316264596228/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
+  Status: Post submitted successfully!
+  Sleeping for 765s to maintain safe posting frequency... Done
+
+
+● [81/110] Group: 🏠 London Apartments (https://www.facebook.com/groups/I1525/)
+  Navigating to group page... Done
+  Filling Buy/Sell form...  AI: Scanning form fields...
+  AI: Found 2 form fields
+● [81/110] Group: 🏠 London Apartments (https://www.facebook.com/groups/I1525/)
+  AI: Clicked listing type 'Item for sale'
+  AI: Re-scanned and found 5 form fields
+  AI: Analyzing form with Groq Llama 3.3...
+  AI: Error during AI form filling: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jm9tapfbeart4j9yabwhsraj` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99781, Requested 1609. Please try again in 20m0.96s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+  AI form filling failed: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jm9tapfbeart4j9yabwhsraj` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99781, Requested 1609. Please try again in 20m0.96s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}. Falling back to legacy logic.
+  Filling Buy/Sell form... Posted successfully
+  Sleeping for 2s before next group... Done
+
+
+● [82/110] Group: LONDON PROPERTY TO RENT 🏠🏡🏘 (https://www.facebook.com/groups/185066082023358/)
+  Navigating to group page... Done
+  Switching to Discussion tab... Done
+  Opening composer... Done (Write something)
+  Uploading 11 photos... Done
+  Typing message... Done
+  Publishing post... Submitted
